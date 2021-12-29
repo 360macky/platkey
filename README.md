@@ -14,7 +14,7 @@
 <p align="center">
   🤗 Thank you for visiting this browser extension project, help spread it by giving a star! 🌟<br />
   <br />
-  <a href="https://github.com/360macky/spacex-search/stargazers"><img src="https://img.shields.io/github/stars/360macky/platzikey?label=Star%20this%20repository%21&style=social" /></a><br />
+  <a href="https://github.com/360macky/platzikey/stargazers"><img src="https://img.shields.io/github/stars/360macky/platzikey?label=Star%20this%20repository%21&style=social" /></a><br />
 </p>
 
 ## 🏛️ History
