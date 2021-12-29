@@ -11,6 +11,13 @@
 
 <p align="center">🚀 Give awesome features to your <a href="https://platzi.com">Platzi Exams</a> with this browser extension 🦉.</p>
 
+<a href="https://github.com/360macky/platzikey/blob/main/INSTALLATION.md">
+  <img
+    src=".github/BannerInstallation.png"
+    align="center"
+  />
+</a>
+
 <p align="center">
   🤗 Thank you for visiting this browser extension project, help spread it by giving a star! 🌟<br />
   <br />
