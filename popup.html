@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./styles.css" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  </head>
+  <body>
+    <div class="pkey__title-container">
+      <img
+        src="./images/logo.png"
+        alt="PlatziKey"
+        title="PlatziKey"
+        class="pkey__logo-image"
+      />
+    </div>
+    <div class="pkey__panel">
+      <div class="pkey__panel-component">
+        <h2 class="pkey__panel-component-title" id="shortcutsTitle">
+          Shortcuts
+        </h2>
+        <button
+          class="pkey__primary-button pkey__button-off"
+          id="activateShortcuts"
+        >
+          Activar
+        </button>
+      </div>
+      <div class="pkey__panel-component">
+        <h2 class="pkey__panel-component-title" id="greenboardTitle">
+          Greenboard
+        </h2>
+        <button
+          class="pkey__primary-button pkey__button-on"
+          id="activateGreenboard"
+        >
+          Activar
+        </button>
+      </div>
+      <div class="pkey__panel-component">
+        <h2 class="pkey__panel-component-title">Tema</h2>
+        <div class="pkey__panel__theme-options">
+          <label class="form-control">
+            <input
+              type="radio"
+              name="pkey__radio"
+              class="pkey__radio"
+              data-radio="normal"
+              id="radio-normal"
+            />
+            Normal
+          </label>
+          <label class="form-control">
+            <input
+              type="radio"
+              name="pkey__radio"
+              class="pkey__radio"
+              data-radio="zen"
+              id="radio-zen"
+            />
+            Zen Mode
+          </label>
+          <label class="form-control">
+            <input
+              type="radio"
+              name="pkey__radio"
+              class="pkey__radio"
+              data-radio="ssh"
+              id="radio-ssh"
+            />
+            SSH Mode
+          </label>
+        </div>
+      </div>
+    </div>
+    <script src="./popup.js"></script>
+  </body>
+</html>
