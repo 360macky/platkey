@@ -204,6 +204,10 @@ function appendStylesheet(theme) {
   head.appendChild(link);
 }
 
+/**
+ * Remove HTML elements if exists.
+ * @param {String} ids
+ */
 function removeElementsIfExists(ids) {
   for (let index = 0; index < ids.length; index++) {
     const id = ids[index];
