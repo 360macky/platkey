@@ -24,6 +24,24 @@
   <a href="https://github.com/360macky/platzikey/stargazers"><img src="https://img.shields.io/github/stars/360macky/platzikey?label=Star%20this%20repository%21&style=social" /></a><br />
 </p>
 
+## 🚀 Features
+
+### ⌨ PlatziKey Shortcuts
+
+Select exam options faster with your own keyboard. Use letters, and numbers!
+
+### 🖌 PlatziKey Greenboard
+
+Open a fully integrated _whiteboard_ in your exam to be able to draw, do calculations or whatever you want.
+
+### 🧐 PlatziKey Zen Mode
+
+A new design that reduces the number of buttons and visual elements in the exam.
+
+### 💻 PlatziKey SSH Mode
+
+A terminal-style design to solve exams as if you were installing a package.
+
 ## 🏛️ History
 
 This browser extension was made with the motive of **accelerating the speed of exam taking** in Platzi inspired by the way in which Typeform structures the shortcuts of its forms.
@@ -44,23 +62,6 @@ It works correctly in Google Chrome and Micorosft Edge.
 
 At this time it can only be installed through the developer mode of the Google Chrome browser. It is being reviewed so that it can be available in the Chrome Web Store.
 
-## 🚀 Features
-
-### ⌨ PlatziKey Shortcuts
-
-Select exam options faster with your own keyboard. Use letters, and numbers!
-
-### 🖌 PlatziKey Greenboard
-
-Open a fully integrated _whiteboard_ in your exam to be able to draw, do calculations or whatever you want.
-
-### 🧐 PlatziKey Zen Mode
-
-A new design that reduces the number of buttons and visual elements in the exam.
-
-### 💻 PlatziKey SSH Mode
-
-A terminal-style design to solve exams as if you were installing a package.
 
 ## 🤲 Contributing
 
