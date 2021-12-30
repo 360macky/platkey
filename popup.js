@@ -85,7 +85,7 @@ activateGreenboardButton.addEventListener("click", (event) => {
       chrome.storage.sync.set({ greenboard: !greenboard });
       updateGreenboardButton(!greenboard);
       chrome.tabs.query(queryDefaultOptions, (tabs) => {
-        tabs.forEach(function (tab) {
+        tabs.forEach((tab) => {
           chrome.scripting.executeScript({
             target: { tabId: tab.id },
             files: ["deactivateGreenboard.js"],
@@ -96,7 +96,7 @@ activateGreenboardButton.addEventListener("click", (event) => {
       chrome.storage.sync.set({ greenboard: !greenboard });
       updateGreenboardButton(!greenboard);
       chrome.tabs.query(queryDefaultOptions, (tabs) => {
-        tabs.forEach(function (tab) {
+        tabs.forEach((tab) => {
           chrome.scripting.executeScript({
             target: { tabId: tab.id },
             files: ["greenboard.js"],
@@ -126,6 +126,10 @@ chrome.storage.sync.get("theme", ({ theme }) => {
   }
 });
 
+/**
+ * Change theme onClick event handler.
+ * @param {String} theme name
+ */
 function changeTheme(theme) {
   let themeOption = document.getElementById(`radio-${theme}`);
   themeOption.checked = true;
