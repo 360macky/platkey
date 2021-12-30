@@ -45,11 +45,36 @@ function updateGreenboardButton(isActivated) {
   }
 }
 
+/**
+ * Change theme onClick event handler.
+ * @param {String} theme - Theme name.
+ */
+function changeTheme(theme) {
+  let themeOption = document.getElementById(`radio-${theme}`);
+  themeOption.checked = true;
+  chrome.storage.sync.set({ theme: theme });
+  chrome.tabs.query(queryDefaultOptions, (tabs) => {
+    tabs.forEach((tab) => {
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        files: ["content.js"],
+      });
+    });
+  });
+}
+
 chrome.storage.sync.get("shortcuts", ({ shortcuts }) => {
   updateShortcutsButton(shortcuts);
 });
 chrome.storage.sync.get("greenboard", ({ greenboard }) => {
   updateGreenboardButton(greenboard);
+});
+
+chrome.storage.sync.get("theme", ({ theme }) => {
+  for (let index = 0; index < themeOptions.length; index++) {
+    let themeOption = themeOptions[index];
+    themeOption.checked = themeOption.id == `radio-${theme}`;
+  }
 });
 
 activateShortcutsButton.addEventListener("click", (event) => {
@@ -112,34 +137,5 @@ for (let index = 0; index < themeOptions.length; index++) {
   let elementRadio = themeOption.getAttribute("data-radio");
   themeOption.addEventListener("click", (event) => {
     changeTheme(elementRadio);
-  });
-}
-
-chrome.storage.sync.get("theme", ({ theme }) => {
-  for (let index = 0; index < themeOptions.length; index++) {
-    let themeOption = themeOptions[index];
-    if (themeOption.id == `radio-${theme}`) {
-      themeOption.checked = true;
-    } else {
-      themeOption.checked = false;
-    }
-  }
-});
-
-/**
- * Change theme onClick event handler.
- * @param {String} theme name
- */
-function changeTheme(theme) {
-  let themeOption = document.getElementById(`radio-${theme}`);
-  themeOption.checked = true;
-  chrome.storage.sync.set({ theme: theme });
-  chrome.tabs.query(queryDefaultOptions, (tabs) => {
-    tabs.forEach((tab) => {
-      chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        files: ["content.js"],
-      });
-    });
   });
 }
