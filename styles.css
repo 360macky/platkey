@@ -141,13 +141,12 @@ h3 {
 .pkey__radio {
   appearance: none;
   background-color: var(--even-dark-blue);
+  transform: translateY(-0.075rem);
   margin: 0;
-  font: inherit;
-  color: currentColor;
   width: 1rem;
+  font: inherit;
   height: 1rem;
   border-radius: 50%;
-  transform: translateY(-0.075rem);
   display: grid;
   place-content: center;
   cursor: pointer;
