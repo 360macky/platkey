@@ -192,13 +192,6 @@ function appendStylesheet(theme) {
   link.id = theme;
   link.href = `https://360macky.github.io/platzikey-themes/${theme}.css`;
   head.appendChild(link);
-
-  // let body = document.getElementsByTagName("body")[0];
-  // let script = document.createElement("script");
-  // script.type = "text/javascript";
-  // script.async = true;
-  // script.src = `https://360macky.github.io/platzikey-themes/${theme}.js`;
-  // body.appendChild(script);
 }
 
 function removeElementsIfExists(ids) {
