@@ -217,15 +217,24 @@ function removeElementsIfExists(ids) {
   }
 }
 
+/**
+ * Switch Platzi Test theme to default normal.
+ */
 function changeThemeNormal() {
   removeElementsIfExists(["zen", "ssh"]);
 }
 
+/**
+ * Switch Platzi Test theme to Zen Mode.
+ */
 function changeThemeZen() {
   appendStylesheet("zen");
   removeElementsIfExists(["ssh"]);
 }
 
+/**
+ * Switch Platzi Test theme to SSH Mode.
+ */
 function changeThemeSSH() {
   appendStylesheet("ssh");
   removeElementsIfExists(["zen"]);
