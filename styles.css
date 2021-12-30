@@ -5,7 +5,7 @@
   --even-dark-blue: #060a14;
   --really-blue: #121f3d;
   --clearer-blue: #1d315d;
-  --green-blue: #98ca3f;
+  --green: #98ca3f;
   --skyblue: #33b1ff;
 }
 
@@ -43,7 +43,7 @@ body {
 }
 
 .green-text {
-  color: var(--green-blue);
+  color: var(--green);
 }
 
 .pkey__panel {
