@@ -95,6 +95,9 @@ function htmlToElement(html) {
   return template.content.firstChild;
 }
 
+/**
+ * Add greenboard on Platzi test.
+ */
 function activateGreenboardOnPlatziTest() {
   if (!document.getElementById("greenboardContainer")) {
     let stepsContainer = document.getElementsByClassName("QuestionSelector")[0];
@@ -176,6 +179,9 @@ function activateGreenboardOnPlatziTest() {
   }
 }
 
+/**
+ * Remove Greenboard from Platzi Test.
+ */
 function deactivateGreenboardOnPlatziTest() {
   if (document.querySelector(".grid-container")) {
     document
@@ -184,6 +190,10 @@ function deactivateGreenboardOnPlatziTest() {
   }
 }
 
+/**
+ * Append stylesheet link to the head.
+ * @param {String} Theme name.
+ */
 function appendStylesheet(theme) {
   let head = document.getElementsByTagName("head")[0];
   let link = document.createElement("link");
