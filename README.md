@@ -38,7 +38,7 @@ Finally two additional web themes to touch up the appearance of the exam.
 
 ## 🔩 Installation
 
-Follow this tutorial for installation.
+Follow this tutorial for [this tutorial](https://github.com/360macky/platzikey/blob/main/INSTALLATION.md).
 
 It works correctly in Google Chrome and Micorosft Edge.
 
