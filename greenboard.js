@@ -43,7 +43,7 @@ function activateGreenboardOnPlatziTest() {
   let link = document.createElement("link");
   link.rel = "stylesheet";
   link.type = "text/css";
-  link.href = "https://360macky.github.io/decembrerTest/greenboard.css";
+  link.href = "https://360macky.github.io/platzikey-themes/utils/greenboard.css";
   head.appendChild(link);
 
   let canvas = document.getElementById("pkey__canvas");
