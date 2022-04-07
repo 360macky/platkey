@@ -34,8 +34,9 @@
     },
     "permissions": [
         "storage",
-        "scripting",
-        "tabs",
-        "activeTab"
+        "scripting"
+    ],
+    "host_permissions": [
+        "https://platzi.com/*"
     ]
 }
