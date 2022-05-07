@@ -6,7 +6,7 @@
     alt="PlatziKey"
     title="PlatziKey"
   />
-  <h1 align="center">PlatziKey</h1>
+  <h1 align="center">Platzikey</h1>
 </p>
 
 <p align="center">🚀 Give awesome features to your <a href="https://platzi.com">Platzi Exams</a> with this browser extension 🦉.</p>
