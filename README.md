@@ -56,11 +56,16 @@ Finally two additional web themes to touch up the appearance of the exam.
 
 ## 🔩 Installation
 
-Follow this tutorial for [this tutorial](https://github.com/360macky/platzikey/blob/main/INSTALLATION.md).
+### Production (recommended)
+
+Go to [PlatziKey Extension page](https://chrome.google.com/webstore/detail/platzikey/bdjedpeffgjikndcihipemgdinpcmpcf?hl=es-419), and click on "Add extension".
 
 It works correctly in Google Chrome and Micorosft Edge.
 
-At this time it can only be installed through the developer mode of the Google Chrome browser. It is being reviewed so that it can be available in the Chrome Web Store.
+
+## Development
+
+If you want the latest features of PlatziKey you can install the development version following [this tutorial](https://github.com/360macky/platzikey/blob/main/INSTALLATION.md).
 
 
 ## 🤲 Contributing
