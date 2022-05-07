@@ -63,7 +63,7 @@ Go to [PlatziKey Extension page](https://chrome.google.com/webstore/detail/platz
 It works correctly in Google Chrome and Micorosft Edge.
 
 
-## Development
+### Development
 
 If you want the latest features of PlatziKey you can install the development version following [this tutorial](https://github.com/360macky/platzikey/blob/main/INSTALLATION.md).
 
