@@ -20,7 +20,7 @@ function updateShortcutsButton(isActivated) {
     activateShortcutsButton.classList.add("pkey__button-off");
     shortcutsTitle.classList.add("green-text");
   } else {
-    activateShortcutsButton.innerText = "Activar";
+    activateShortcutsButton.textContent = "Activar";
     activateShortcutsButton.classList.remove("pkey__button-off");
     activateShortcutsButton.classList.add("pkey__button-on");
     shortcutsTitle.classList.remove("green-text");
@@ -38,7 +38,7 @@ function updateGreenboardButton(isActivated) {
     activateGreenboardButton.classList.add("pkey__button-off");
     greenboardTitle.classList.add("green-text");
   } else {
-    activateGreenboardButton.innerText = "Activar";
+    activateGreenboardButton.textContent = "Activar";
     activateGreenboardButton.classList.remove("pkey__button-off");
     activateGreenboardButton.classList.add("pkey__button-on");
     greenboardTitle.classList.remove("green-text");
