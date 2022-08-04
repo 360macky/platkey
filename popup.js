@@ -15,12 +15,14 @@ const queryDefaultOptions = { active: true, currentWindow: true };
  */
 function updateShortcutsButton(isActivated) {
   if (isActivated) {
-    activateShortcutsButton.innerHTML = "Desactivar";
+    activateShortcutsButton.textContent = "Desactivar";
+    activateShortcutsButton.ariaLabel = "Desactivar shortcuts";
     activateShortcutsButton.classList.remove("pkey__button-on");
     activateShortcutsButton.classList.add("pkey__button-off");
     shortcutsTitle.classList.add("green-text");
   } else {
     activateShortcutsButton.textContent = "Activar";
+    activateShortcutsButton.ariaLabel = "Activar shortcuts";
     activateShortcutsButton.classList.remove("pkey__button-off");
     activateShortcutsButton.classList.add("pkey__button-on");
     shortcutsTitle.classList.remove("green-text");
@@ -33,12 +35,14 @@ function updateShortcutsButton(isActivated) {
  */
 function updateGreenboardButton(isActivated) {
   if (isActivated) {
-    activateGreenboardButton.innerHTML = "Desactivar";
+    activateGreenboardButton.textContent = "Desactivar";
+    activateGreenboardButton.ariaLabel = "Desactivar greenboard";
     activateGreenboardButton.classList.remove("pkey__button-on");
     activateGreenboardButton.classList.add("pkey__button-off");
     greenboardTitle.classList.add("green-text");
   } else {
     activateGreenboardButton.textContent = "Activar";
+    activateGreenboardButton.ariaLabel = "Activar greenboard";
     activateGreenboardButton.classList.remove("pkey__button-off");
     activateGreenboardButton.classList.add("pkey__button-on");
     greenboardTitle.classList.remove("green-text");
