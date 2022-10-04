@@ -42,6 +42,9 @@ A new design that reduces the number of buttons and visual elements in the exam.
 
 A terminal-style design to solve exams as if you were installing a package.
 
+### New features 👀
+The verision 3 of PlatKey will come with new features soon...
+
 ## 🏛️ History
 
 This browser extension was made with the motive of **accelerating the speed of exam taking** in Platzi inspired by the way in which Typeform structures the shortcuts of its forms.
