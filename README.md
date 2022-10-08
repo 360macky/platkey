@@ -24,6 +24,14 @@
   <a href="https://github.com/360macky/platzikey/stargazers"><img src="https://img.shields.io/github/stars/360macky/platzikey?label=Star%20this%20repository%21&style=social" /></a><br />
 </p>
 
+## 💻 Development
+
+PlatziKey is an extension targeting Chromium-based browsers like Chrome, Edge, and Brave. The main feature is to provide shortcuts (or hotkeys) to access the options of a Platzi exam, speeding up the process of choosing an answer to a question, and improving the experience of users who want to interact more with the keyboard than with the mouse.
+
+### ⌨️ Shortcuts Technology
+
+To achieve this, PlatziKey [creates an eventlistener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) inside window to listen for keypresses on keys `A`, `B`, `C`, `D`, `E` and `1`, `2`, `3`, `4`, `5` and `6`. Also `X` or `0` key to skip the question.
+
 ## 🚀 Features
 
 ### ⌨ PlatziKey Shortcuts
@@ -43,6 +51,7 @@ A new design that reduces the number of buttons and visual elements in the exam.
 A terminal-style design to solve exams as if you were installing a package.
 
 ### New features 👀
+
 The verision 3 of PlatKey will come with new features soon...
 
 ## 🏛️ History
@@ -65,11 +74,9 @@ Go to [PlatziKey Extension page](https://chrome.google.com/webstore/detail/platz
 
 It works correctly in Google Chrome and Micorosft Edge.
 
-
 ### Development
 
 If you want the latest features of PlatziKey you can install the development version following [this tutorial](https://github.com/360macky/platzikey/blob/main/INSTALLATION.md).
-
 
 ## 🤲 Contributing
 
