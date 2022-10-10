@@ -28,6 +28,15 @@
 
 PlatziKey is an extension targeting Chromium-based browsers like Chrome, Edge, and Brave. The main feature is to provide shortcuts (or hotkeys) to access the options of a Platzi exam, speeding up the process of choosing an answer to a question, and improving the experience of users who want to interact more with the keyboard than with the mouse.
 
+### 🔭 Control Flow
+
+The `content.js` file is executed in background everytime the page is loaded for the `"https://platzi.com/*"`
+
+PlatziKey works with these permissions:
+
+* `storage`: To store variables like `shortcuts`, `greenboard`, etc.
+* `scripting`: To execute JavaScript scripts inside the page itself.
+
 ### ⌨️ Shortcuts Technology
 
 To achieve this, PlatziKey [creates an eventlistener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) inside window to listen for keypresses on keys `A`, `B`, `C`, `D`, `E` and `1`, `2`, `3`, `4`, `5` and `6`. Also `X` or `0` key to skip the question.
