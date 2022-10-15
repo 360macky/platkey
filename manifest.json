@@ -10,10 +10,11 @@
     "content_scripts": [
         {
             "js": [
+                "spotlight.js",
                 "content.js"
             ],
             "matches": [
-                "https://platzi.com/clases/examen/tomar_examen/*"
+                "https://platzi.com/*"
             ]
         }
     ],
