@@ -1,10 +1,13 @@
 /**
  * @file Manages the events for the PlatziKey extension popup.
+ * This file wih add event listeners to the buttons and the radio options of popup UI
  */
 
 let activateShortcutsButton = document.getElementById("activateShortcuts");
 let activateGreenboardButton = document.getElementById("activateGreenboard");
+let activateSpotlightButton = document.getElementById("activateSpotlight");
 let shortcutsTitle = document.getElementById("shortcutsTitle");
+let spotlightTitle = document.getElementById("spotlightTitle");
 let themeOptions = document.getElementsByName("pkey__radio");
 
 const queryDefaultOptions = { active: true, currentWindow: true };
@@ -14,17 +17,19 @@ const queryDefaultOptions = { active: true, currentWindow: true };
  * @param {boolean} isActivated - Set the Button mode of Shortcuts button.
  */
 function updateShortcutsButton(isActivated) {
+  activateShortcutsButton.textContent = isActivated ? "Desactivar" : "Activar";
+  activateShortcutsButton.ariaLabel = isActivated
+    ? "Desactivar shortcuts"
+    : "Activar shortcuts";
+  activateShortcutsButton.classList.remove(
+    isActivated ? "pkey__button-on" : "pkey__button-off"
+  );
+  activateShortcutsButton.classList.add(
+    isActivated ? "pkey__button-off" : "pkey__button-on"
+  );
   if (isActivated) {
-    activateShortcutsButton.textContent = "Desactivar";
-    activateShortcutsButton.ariaLabel = "Desactivar shortcuts";
-    activateShortcutsButton.classList.remove("pkey__button-on");
-    activateShortcutsButton.classList.add("pkey__button-off");
     shortcutsTitle.classList.add("green-text");
   } else {
-    activateShortcutsButton.textContent = "Activar";
-    activateShortcutsButton.ariaLabel = "Activar shortcuts";
-    activateShortcutsButton.classList.remove("pkey__button-off");
-    activateShortcutsButton.classList.add("pkey__button-on");
     shortcutsTitle.classList.remove("green-text");
   }
 }
@@ -34,18 +39,42 @@ function updateShortcutsButton(isActivated) {
  * @param {boolean} isActivated - Set the Button mode of Greenboard button.
  */
 function updateGreenboardButton(isActivated) {
+  activateGreenboardButton.textContent = isActivated ? "Desactivar" : "Activar";
+  activateGreenboardButton.ariaLabel = isActivated
+    ? "Desactivar greenboard"
+    : "Activar greenboard";
+  activateGreenboardButton.classList.remove(
+    isActivated ? "pkey__button-on" : "pkey__button-off"
+  );
+  activateGreenboardButton.classList.add(
+    isActivated ? "pkey__button-off" : "pkey__button-on"
+  );
   if (isActivated) {
-    activateGreenboardButton.textContent = "Desactivar";
-    activateGreenboardButton.ariaLabel = "Desactivar greenboard";
-    activateGreenboardButton.classList.remove("pkey__button-on");
-    activateGreenboardButton.classList.add("pkey__button-off");
     greenboardTitle.classList.add("green-text");
   } else {
-    activateGreenboardButton.textContent = "Activar";
-    activateGreenboardButton.ariaLabel = "Activar greenboard";
-    activateGreenboardButton.classList.remove("pkey__button-off");
-    activateGreenboardButton.classList.add("pkey__button-on");
     greenboardTitle.classList.remove("green-text");
+  }
+}
+
+/**
+ * Update Spotlight style.
+ * @param {boolean} isActivated - Set the Button mode of Spotlight button.
+ */
+function updateSpotlightButton(isActivated) {
+  activateSpotlightButton.textContent = isActivated ? "Desactivar" : "Activar";
+  activateSpotlightButton.ariaLabel = isActivated
+    ? "Desactivar spotlight"
+    : "Activar spotlight";
+  activateSpotlightButton.classList.remove(
+    isActivated ? "pkey__button-on" : "pkey__button-off"
+  );
+  activateSpotlightButton.classList.add(
+    isActivated ? "pkey__button-off" : "pkey__button-on"
+  );
+  if (isActivated) {
+    spotlightTitle.classList.add("green-text");
+  } else {
+    spotlightTitle.classList.remove("green-text");
   }
 }
 
@@ -73,6 +102,9 @@ chrome.storage.sync.get("shortcuts", ({ shortcuts }) => {
 chrome.storage.sync.get("greenboard", ({ greenboard }) => {
   updateGreenboardButton(greenboard);
 });
+chrome.storage.sync.get("spotlight", ({ spotlight }) => {
+  updateSpotlightButton(spotlight);
+});
 
 chrome.storage.sync.get("theme", ({ theme }) => {
   for (let index = 0; index < themeOptions.length; index++) {
@@ -84,6 +116,7 @@ chrome.storage.sync.get("theme", ({ theme }) => {
 activateShortcutsButton.addEventListener("click", (event) => {
   chrome.storage.sync.get("shortcuts", ({ shortcuts }) => {
     if (shortcuts) {
+      window.close();
       chrome.tabs.query(queryDefaultOptions, (tabs) => {
         tabs.forEach((tab) => {
           chrome.scripting.executeScript({
@@ -93,8 +126,8 @@ activateShortcutsButton.addEventListener("click", (event) => {
         });
       });
     } else {
-      chrome.storage.sync.set({ shortcuts: !shortcuts });
-      updateShortcutsButton(!shortcuts);
+      chrome.storage.sync.set({ shortcuts: true });
+      updateShortcutsButton(true);
     }
   });
 
@@ -108,11 +141,40 @@ activateShortcutsButton.addEventListener("click", (event) => {
   });
 });
 
+activateSpotlight.addEventListener("click", (event) => {
+  chrome.storage.sync.get("spotlight", ({ spotlight }) => {
+    if (spotlight) {
+      window.close();
+      chrome.storage.sync.set({ spotlight: !spotlight });
+      updateSpotlightButton(!spotlight);
+      chrome.tabs.query(queryDefaultOptions, (tabs) => {
+        tabs.forEach((tab) => {
+          chrome.scripting.executeScript({
+            target: { tabId: tab.id },
+            files: ["deactivateSpotlight.js"],
+          });
+        });
+      });
+    } else {
+      chrome.tabs.query(queryDefaultOptions, (tabs) => {
+        chrome.storage.sync.set({ spotlight: !spotlight });
+        updateSpotlightButton(!spotlight);
+        tabs.forEach((tab) => {
+          chrome.scripting.executeScript({
+            target: { tabId: tab.id },
+            files: ["spotlight.js"],
+          });
+        });
+      });
+    }
+  });
+});
+
 activateGreenboardButton.addEventListener("click", (event) => {
   chrome.storage.sync.get("greenboard", ({ greenboard }) => {
+    updateGreenboardButton(!greenboard);
+    chrome.storage.sync.set({ greenboard: !greenboard });
     if (greenboard) {
-      chrome.storage.sync.set({ greenboard: !greenboard });
-      updateGreenboardButton(!greenboard);
       chrome.tabs.query(queryDefaultOptions, (tabs) => {
         tabs.forEach((tab) => {
           chrome.scripting.executeScript({
@@ -122,8 +184,6 @@ activateGreenboardButton.addEventListener("click", (event) => {
         });
       });
     } else {
-      chrome.storage.sync.set({ greenboard: !greenboard });
-      updateGreenboardButton(!greenboard);
       chrome.tabs.query(queryDefaultOptions, (tabs) => {
         tabs.forEach((tab) => {
           chrome.scripting.executeScript({
