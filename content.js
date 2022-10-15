@@ -52,34 +52,170 @@ function skipQuestion() {
   }, 1000);
 }
 
+function isMac() {
+  return window.navigator.userAgent.indexOf("Mac") != -1;
+}
+
 /**
  * Manages keyboard touches by firing a click() method and calling skipQuestion() and nextQuestion().
  */
-function shortcutsOnPlatziTest(event) {
-  const options = document.getElementsByClassName("QuestionSelector-options");
-  if (compareKey(["A", "a", "1"], event.key)) {
-    options[0].children[0].click();
-  } else if (compareKey(["B", "b", "2"], event.key)) {
-    options[0].children[1].click();
-  } else if (compareKey(["C", "c", "3"], event.key)) {
-    options[0].children[2].click();
-  } else if (compareKey(["D", "d", "4"], event.key)) {
-    options[0].children[3].click();
-  } else if (compareKey(["E", "e", "5"], event.key)) {
-    options[0].children[4].click();
+function shortcutsOnPlatzi(event) {
+  if (window.location.pathname.startsWith("/clases/examen")) {
+    const options = document.getElementsByClassName("QuestionSelector-options");
+    const isOnlyKeyPressed =
+      !event.ctrlKey && !event.metaKey && !event.shiftKey;
+    const cmdOrCtrl = isMac() ? event.metaKey : event.ctrlKey;
+    const cmdEnter = cmdOrCtrl && event.key === "Enter";
+    if (cmdEnter) {
+      if (document.getElementsByClassName("StartExamOverview-btn").length > 0) {
+        document.getElementsByClassName("StartExamOverview-btn")[0].click();
+        return;
+      }
+    }
+    if (isOnlyKeyPressed) {
+      if (compareKey(["A", "a", "1"], event.key)) {
+        options[0].children[0].click();
+      } else if (compareKey(["B", "b", "2"], event.key)) {
+        options[0].children[1].click();
+      } else if (compareKey(["C", "c", "3"], event.key)) {
+        options[0].children[2].click();
+      } else if (compareKey(["D", "d", "4"], event.key)) {
+        options[0].children[3].click();
+      } else if (compareKey(["E", "e", "5"], event.key)) {
+        options[0].children[4].click();
+      }
+      if (compareKey(["X", "x", "0"], event.key)) {
+        skipQuestion();
+      } else {
+        nextQuestion();
+      }
+    }
+    return;
   }
-  if (compareKey(["X", "x", "0"], event.key)) {
-    skipQuestion();
-  } else {
-    nextQuestion();
+  if (window.location.pathname.startsWith("/clases/")) {
+    // Abrir aport
+    const cmdOrCtrl = isMac() ? event.metaKey : event.ctrlKey;
+    const shiftA = event.shiftKey && compareKey(["a", "A"], event.key);
+    const cmdB = cmdOrCtrl && compareKey(["b", "B"], event.key);
+    const cmdI = cmdOrCtrl && compareKey(["i", "I"], event.key);
+    const cmdU = cmdOrCtrl && compareKey(["u", "U"], event.key);
+    const cmdQ = cmdOrCtrl && compareKey(["q", "Q"], event.key);
+    const cmdShiftK =
+      event.shiftKey && cmdOrCtrl && compareKey(["k", "K"], event.key);
+    const cmdK = cmdOrCtrl && compareKey(["k", "K"], event.key);
+    const cmdShiftI =
+      event.shiftKey && cmdOrCtrl && compareKey(["i", "I"], event.key);
+
+    // Preview
+    const cmdEnter = cmdOrCtrl && event.key === "Enter";
+
+    // Avanzar y retroceder clases
+    const shiftN = event.shiftKey && compareKey(["n", "N"], event.key);
+    const shiftP = event.shiftKey && compareKey(["p", "P"], event.key);
+    if (shiftN) {
+      document.getElementsByClassName("Header-course-actions-next")[0].click();
+    }
+    if (shiftP) {
+      document.getElementsByClassName("Header-course-actions-prev")[0].click();
+    }
+    if (shiftA) {
+      document.getElementsByClassName("EditorWrapper-input")[0].click();
+      // Prevent inserting unwanted words like "A" after entering Shift+A.
+      setTimeout(() => {
+        document.getElementsByClassName("PulseEditor-field")[0].value = "";
+      }, 10);
+    }
+    if (document.activeElement.tagName === "TEXTAREA") {
+      if (cmdB) {
+        document
+          .getElementsByClassName(
+            "PulseEditor-button PulseEditor-button--bold"
+          )[0]
+          .click();
+        document.getElementsByClassName(
+          "PulseEditor-button PulseEditor-button--bold"
+        ).alt = "Bold [CMD+B]";
+      }
+      if (cmdI) {
+        document
+          .getElementsByClassName(
+            "PulseEditor-button PulseEditor-button--italic"
+          )[0]
+          .click();
+      }
+      if (cmdU) {
+        document
+          .getElementsByClassName(
+            "PulseEditor-button PulseEditor-button--underline"
+          )[0]
+          .click();
+      }
+      if (cmdQ) {
+        document
+          .getElementsByClassName(
+            "PulseEditor-button PulseEditor-button--quote"
+          )[0]
+          .click();
+      }
+      if (cmdShiftK) {
+        document
+          .getElementsByClassName(
+            "PulseEditor-button PulseEditor-button--code"
+          )[0]
+          .click();
+      }
+      if (cmdK) {
+        document
+          .getElementsByClassName(
+            "PulseEditor-button PulseEditor-button--link"
+          )[0]
+          .click();
+      }
+      if (cmdShiftI) {
+        document
+          .getElementsByClassName(
+            "PulseEditor-button PulseEditor-button--image"
+          )[0]
+          .click();
+      }
+      if (cmdEnter) {
+        if (
+          document.getElementsByClassName("PulseEditor-button is-expand")
+            .length > 0
+        ) {
+          document
+            .getElementsByClassName("PulseEditor-button is-expand")[0]
+            .click();
+        } else {
+          document
+            .getElementsByClassName("PulseEditor-button is-contract")[0]
+            .click();
+        }
+      }
+    } else {
+      if (cmdB) {
+        document.getElementsByClassName("Syllabus-toggle")[0].click();
+      }
+    }
   }
 }
 
 /**
  * Enable keyboard shortcuts.
  */
-function activateShortcutsOnPlatziTest() {
-  window.addEventListener("keydown", shortcutsOnPlatziTest);
+function activateShortcutsOnPlatzi() {
+  if (window.location.pathname.startsWith("/clases/examen")) {
+    if (document.getElementsByClassName("StartExamOverview-list").length > 0) {
+      const overviewList = document.getElementsByClassName(
+        "StartExamOverview-list"
+      )[0];
+      const shortcutsInfo = document.createElement("li");
+      shortcutsInfo.textContent =
+        "Puedes usar shortcuts de tu extensión Platkey.";
+      overviewList.append(shortcutsInfo);
+    }
+  }
+  window.addEventListener("keydown", shortcutsOnPlatzi);
 }
 
 /**
@@ -245,7 +381,7 @@ function changeThemeSSH() {
  */
 chrome.storage.sync.get("shortcuts", ({ shortcuts }) => {
   if (shortcuts) {
-    activateShortcutsOnPlatziTest();
+    activateShortcutsOnPlatzi();
   }
 });
 
