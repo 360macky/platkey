@@ -6,12 +6,14 @@
   </head>
   <body>
     <div class="pkey__title-container">
-      <img
-        src="./images/logo.png"
-        alt="PlatziKey"
-        title="PlatziKey"
-        class="pkey__logo-image"
-      />
+      <a href="https://platkey.dev" target="_blank">
+        <img
+          src="./images/logo.svg"
+          alt="PlatziKey"
+          title="PlatziKey"
+          class="pkey__logo-image"
+        />
+      </a>
     </div>
     <div class="pkey__panel">
       <div class="pkey__panel-component">
@@ -39,7 +41,7 @@
       <div class="pkey__panel-component">
         <h2 class="pkey__panel-component-title">Tema</h2>
         <div class="pkey__panel__theme-options">
-          <label class="pkey__form-label-control">
+          <div class="pkey__panel__theme-option">
             <input
               type="radio"
               name="pkey__radio"
@@ -47,9 +49,15 @@
               data-radio="normal"
               id="radio-normal"
             />
-            Normal
-          </label>
-          <label class="pkey__form-label-control">
+            <label
+              class="pkey__form-label-control"
+              for="radio-normal"
+              title="Tema Normal"
+            >
+              Normal
+            </label>
+          </div>
+          <div class="pkey__panel__theme-option">
             <input
               type="radio"
               name="pkey__radio"
@@ -57,9 +65,15 @@
               data-radio="zen"
               id="radio-zen"
             />
-            Zen Mode
-          </label>
-          <label class="pkey__form-label-control">
+            <label
+              class="pkey__form-label-control"
+              for="radio-zen"
+              title="Tema Zen Mode"
+            >
+              Zen Mode
+            </label>
+          </div>
+          <div class="pkey__panel__theme-option">
             <input
               type="radio"
               name="pkey__radio"
@@ -67,9 +81,26 @@
               data-radio="ssh"
               id="radio-ssh"
             />
-            SSH Mode
-          </label>
+            <label
+              class="pkey__form-label-control"
+              for="radio-ssh"
+              title="Tema SSH Mode"
+            >
+              SSH Mode
+            </label>
+          </div>
         </div>
+      </div>
+      <div class="pkey__panel-component">
+        <h2 class="pkey__panel-component-title" id="spotlightTitle">
+          Spotlight
+        </h2>
+        <button
+          class="pkey__primary-button pkey__button-on"
+          id="activateSpotlight"
+        >
+          Activar
+        </button>
       </div>
     </div>
     <script src="./popup.js"></script>
