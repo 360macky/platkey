@@ -1,17 +1,23 @@
+function isMac() {
+  return window.navigator.userAgent.indexOf("Mac") != -1;
+}
+
 chrome.storage.sync.get("spotlight", ({ spotlight }) => {
-  const shortcuts = (event) => {
-    const cmdKPressed = event.key === "k" && event.metaKey;
-    const ctrlKPressed = event.key === "k" && event.ctrlKey;
+  const spotlightShortcut = (event) => {
+    const cmdOrCtrl = isMac() ? event.metaKey : event.ctrlKey;
+    const cmdKPressed = event.key === "k" && cmdOrCtrl;
     const escPressed = event.key === "Escape";
-    if (cmdKPressed || ctrlKPressed) {
-      const searchBar = document.getElementsByClassName("NewSearch")[0];
-      if (searchBar.style.display === "none") {
-        const searchInput =
-          document.getElementsByClassName("NewSearch-input")[0];
-        searchBar.style.display = "block";
-        searchInput.focus();
-      } else {
-        searchBar.style.display = "none";
+    if (cmdKPressed) {
+      if (document.activeElement.tagName !== "TEXTAREA") {
+        const searchBar = document.getElementsByClassName("NewSearch")[0];
+        if (searchBar.style.display === "none") {
+          const searchInput =
+            document.getElementsByClassName("NewSearch-input")[0];
+          searchBar.style.display = "block";
+          searchInput.focus();
+        } else {
+          searchBar.style.display = "none";
+        }
       }
     }
     if (escPressed) {
@@ -38,6 +44,6 @@ chrome.storage.sync.get("spotlight", ({ spotlight }) => {
   }
   if (spotlight) {
     loadSpotlight();
-    window.addEventListener("keydown", shortcuts);
+    window.addEventListener("keydown", spotlightShortcut);
   }
 });
