@@ -3,5 +3,6 @@ chrome.runtime.onInstalled.addListener(() => {
     shortcuts: false,
     greenboard: false,
     theme: "normal",
+    spotlight: false,
   });
 });
