@@ -136,6 +136,14 @@ function shortcutsOnPlatzi(event) {
           "PulseEditor-button PulseEditor-button--bold"
         ).alt = "Bold [CMD+B]";
       }
+      if (cmdShiftI) {
+        document
+          .getElementsByClassName(
+            "PulseEditor-button PulseEditor-button--image"
+          )[0]
+          .click();
+          return;
+      }
       if (cmdI) {
         document
           .getElementsByClassName(
@@ -163,18 +171,12 @@ function shortcutsOnPlatzi(event) {
             "PulseEditor-button PulseEditor-button--code"
           )[0]
           .click();
+        return;
       }
       if (cmdK) {
         document
           .getElementsByClassName(
             "PulseEditor-button PulseEditor-button--link"
-          )[0]
-          .click();
-      }
-      if (cmdShiftI) {
-        document
-          .getElementsByClassName(
-            "PulseEditor-button PulseEditor-button--image"
           )[0]
           .click();
       }
