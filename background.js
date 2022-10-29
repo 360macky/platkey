@@ -4,5 +4,7 @@ chrome.runtime.onInstalled.addListener(() => {
     greenboard: false,
     theme: "normal",
     spotlight: false,
+    classlist: [],
+    savedContributions: []
   });
 });
