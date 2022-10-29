@@ -170,29 +170,32 @@ activateSpotlight.addEventListener("click", (event) => {
   });
 });
 
-activateGreenboardButton.addEventListener("click", (event) => {
+activateGreenboardButton.addEventListener("click", (event) => {  
   chrome.storage.sync.get("greenboard", ({ greenboard }) => {
-    updateGreenboardButton(!greenboard);
-    chrome.storage.sync.set({ greenboard: !greenboard });
-    if (greenboard) {
-      chrome.tabs.query(queryDefaultOptions, (tabs) => {
-        tabs.forEach((tab) => {
+    chrome.tabs.query(queryDefaultOptions, (tabs) => {
+      tabs.forEach((tab) => {
+        if (!tab.url.includes("/clases/examen")) {
+          const activateGreenboardWarning = `PlatKey: La herramienta Greenboard está pensado para su uso dentro de exámenes.`;
+          window.alert(activateGreenboardWarning);
+          return;
+        } else {
+          updateGreenboardButton(!greenboard);
+          chrome.storage.sync.set({ greenboard: !greenboard });
+        }
+
+        if (greenboard) {
           chrome.scripting.executeScript({
             target: { tabId: tab.id },
             files: ["deactivateGreenboard.js"],
           });
-        });
-      });
-    } else {
-      chrome.tabs.query(queryDefaultOptions, (tabs) => {
-        tabs.forEach((tab) => {
+        } else {
           chrome.scripting.executeScript({
             target: { tabId: tab.id },
             files: ["greenboard.js"],
-          });
-        });
+          });          
+        }
       });
-    }
+    });
   });
 });
 
