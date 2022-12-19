@@ -1,7 +1,7 @@
 {
-    "name": "Platzikey",
-    "description": "Shortcuts para realizar exámenes, y otras features increíbles.",
-    "version": "1.0",
+    "name": "Platkey",
+    "description": "Atajos de teclado, guarda clases, guarda aportes, buscador aumentado.",
+    "version": "3.0",
     "manifest_version": 3,
     "author": "Marcelo Arias",
     "background": {
@@ -10,11 +10,15 @@
     "content_scripts": [
         {
             "js": [
+                "save-items.js",
                 "spotlight.js",
                 "content.js"
             ],
             "matches": [
                 "https://platzi.com/*"
+            ],
+            "css": [
+                "page.css"
             ]
         }
     ],
