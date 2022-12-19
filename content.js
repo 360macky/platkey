@@ -44,10 +44,10 @@ function skipQuestion() {
   const skipQuestion = document.getElementsByClassName(
     "ControlBar-button ControlBar-button--left"
   )[0];
-  setTimeout(function () {
+  setTimeout(() => {
     skipQuestion.click();
   }, 200);
-  setTimeout(function () {
+  setTimeout(() => {
     skipQuestion.click();
   }, 1000);
 }
@@ -93,7 +93,7 @@ function shortcutsOnPlatzi(event) {
     return;
   }
   if (window.location.pathname.startsWith("/clases/")) {
-    // Abrir aport
+    // Open Contribution editor.
     const cmdOrCtrl = isMac() ? event.metaKey : event.ctrlKey;
     const shiftA = event.shiftKey && compareKey(["a", "A"], event.key);
     const cmdB = cmdOrCtrl && compareKey(["b", "B"], event.key);
@@ -109,9 +109,10 @@ function shortcutsOnPlatzi(event) {
     // Preview
     const cmdEnter = cmdOrCtrl && event.key === "Enter";
 
-    // Avanzar y retroceder clases
+    // Classes controls
     const shiftN = event.shiftKey && compareKey(["n", "N"], event.key);
     const shiftP = event.shiftKey && compareKey(["p", "P"], event.key);
+    const shiftM = event.shiftKey && compareKey(["m", "M"], event.key);
     if (shiftN) {
       document.getElementsByClassName("Header-course-actions-next")[0].click();
     }
@@ -124,6 +125,10 @@ function shortcutsOnPlatzi(event) {
       setTimeout(() => {
         document.getElementsByClassName("PulseEditor-field")[0].value = "";
       }, 10);
+    }
+    // Save class
+    if (shiftM) {
+      document.getElementById("save-class-button").click();
     }
     if (document.activeElement.tagName === "TEXTAREA") {
       if (cmdB) {
