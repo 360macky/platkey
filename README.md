@@ -17,7 +17,7 @@
   <img
     src=".github/preview.gif"
     align="center"
-    width="300"
+    width="350"
     alt="Preview of PlatKey"
     title="Preview of PlatKey"
     style="border-radius: 10px"
