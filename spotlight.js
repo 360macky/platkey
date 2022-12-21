@@ -3,7 +3,8 @@ function isMac() {
 }
 
 chrome.storage.sync.get("spotlight", ({ spotlight }) => {
-  const spotlightShortcut = (event) => {
+  const loadSpotlightShortcut = (event) => {
+    console.log('Shortcut loaded!');
     const cmdOrCtrl = isMac() ? event.metaKey : event.ctrlKey;
     const cmdKPressed = event.key === "k" && cmdOrCtrl;
     const escPressed = event.key === "Escape";
@@ -28,6 +29,8 @@ chrome.storage.sync.get("spotlight", ({ spotlight }) => {
   function loadSpotlight() {
     const searchBar = document.getElementsByClassName("NewSearch")[0];
     const searchBox = document.getElementsByClassName("NewSearch-box")[0];
+    const searchBoxContainer = document.getElementsByClassName("NewSearch-box-container")[0];
+    const searchNavbarDropDown = document.getElementsByClassName('NewSearch-dropdown')[0];
 
     const spotlightWrapper = document.createElement("div");
     spotlightWrapper.id = "NewSearchSpotlight";
@@ -40,10 +43,16 @@ chrome.storage.sync.get("spotlight", ({ spotlight }) => {
 
     searchBar.style.transform = "translate(0, 16vh) scale(1.4)";
     searchBox.style.boxShadow = "0px 6px 32px 0px rgb(51 177 255 / 75%)";
+    searchBox.style.width = "480px";
     searchBar.style.display = "none";
+    searchBoxContainer.style.width = "480px";
+    searchNavbarDropDown.style.width = "480px";
+
   }
   if (spotlight) {
-    loadSpotlight();
-    window.addEventListener("keydown", spotlightShortcut);
+    setTimeout(() => {
+      loadSpotlight();
+      window.addEventListener("keydown", loadSpotlightShortcut);
+    }, 500);
   }
 });
