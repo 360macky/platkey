@@ -1,7 +1,7 @@
 {
     "name": "Platkey",
     "description": "Atajos de teclado, guarda clases, guarda aportes, buscador aumentado.",
-    "version": "3.0",
+    "version": "3.1",
     "manifest_version": 3,
     "author": "Marcelo Arias",
     "background": {
