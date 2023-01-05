@@ -2,6 +2,10 @@
  * @file Manages the features from popup.js.
  */
 
+/**
+ * @name getScriptOrStylesheet
+ * @description Get the URL of the script or stylesheet to be injected.
+ */
 function getScriptOrStylesheet(name) {
   switch (name) {
     case "greenboard.css":
@@ -14,6 +18,7 @@ function getScriptOrStylesheet(name) {
 }
 
 /**
+ * @name compareKey
  * Check if keyPressed is in values array.
  * @param {Array} values
  * @param {Element} keyPressed
@@ -57,7 +62,8 @@ function isMac() {
 }
 
 /**
- * Manages keyboard touches by firing a click() method and calling skipQuestion() and nextQuestion().
+ * @name shortcutsOnPlatzi
+ * @description Manages keyboard touches by firing a click() method and calling skipQuestion() and nextQuestion().
  */
 function shortcutsOnPlatzi(event) {
   if (window.location.pathname.startsWith("/clases/examen")) {
@@ -208,7 +214,8 @@ function shortcutsOnPlatzi(event) {
 }
 
 /**
- * Enable keyboard shortcuts.
+ * @name activateShortcutsOnPlatzi
+ * @keyboard Enable keyboard shortcuts on window load.
  */
 function activateShortcutsOnPlatzi() {
   if (window.location.pathname.startsWith("/clases/examen")) {
@@ -239,7 +246,8 @@ function htmlToElement(html) {
 }
 
 /**
- * Add greenboard on Platzi test.
+ * @name activateGreenboardOnPlatziTest
+ * @description Add greenboard on Platzi test.
  */
 function activateGreenboardOnPlatziTest() {
   if (!document.getElementById("greenboardContainer")) {
@@ -323,7 +331,8 @@ function activateGreenboardOnPlatziTest() {
 }
 
 /**
- * Remove Greenboard from Platzi Test.
+ * @name deactivateGreenboardOnPlatziTest
+ * @description Remove Greenboard from Platzi Test.
  */
 function deactivateGreenboardOnPlatziTest() {
   if (document.querySelector(".grid-container")) {
@@ -334,7 +343,8 @@ function deactivateGreenboardOnPlatziTest() {
 }
 
 /**
- * Append stylesheet link to the head.
+ * @name appendStylesheet
+ * @description Append stylesheet link to the head of the document.
  * @param {String} Theme name.
  */
 function appendStylesheet(theme) {
@@ -348,7 +358,8 @@ function appendStylesheet(theme) {
 }
 
 /**
- * Remove HTML elements if exists.
+ * @name removeElementsIfExists
+ * @description Remove HTML elements if exists in the document by id.
  * @param {String} ids
  */
 function removeElementsIfExists(ids) {
