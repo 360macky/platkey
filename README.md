@@ -25,6 +25,10 @@
 </p>
 
 <p align="center">
+  <a href="https://platkey.dev">www.platkey.dev</a>
+</p>
+
+<p align="center">
   🤗 Thank you for visiting this browser extension project, help spread it by giving a star! 🌟<br />
   <br />
   <a href="https://github.com/360macky/PlatKey/stargazers"><img src="https://img.shields.io/github/stars/360macky/PlatKey?label=Star%20this%20repository%21&style=social" /></a><br />
