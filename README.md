@@ -14,6 +14,11 @@
 <p align="center">💚 Open Source, Free, and available for Chrome, Edge, Brave, Arc and Safari 🦁</p>
 
 <p align="center">
+  <a href="https://chrome.google.com/webstore/detail/platkey/bdjedpeffgjikndcihipemgdinpcmpcf">🤖 Install on Chromium Browser</a> -
+  <a href="https://apps.apple.com/app/platkey/id1659587636">🍎 Install on Safari</a>
+</p>
+
+<p align="center">
   <img
     src=".github/preview.gif"
     align="center"
