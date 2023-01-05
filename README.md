@@ -84,11 +84,15 @@ Information related to their extension preferences is stored in the browser's st
 
 ### 🔭 Control Flow
 
-The `popup.html` file is the extension window. The `popup.js` file is the JavaScript code whose scope is in this window. It executed when the popup es opened.
+`manifest.json` file is the manifest of the extension. It contains the information of the extension and the permissions it needs.
 
-The `background.js` file only contains the default storage information about the features of PlatKey.
+`popup.html` file is the extension window. The `popup.js` file is the JavaScript code whose scope is in this window. It executed when the popup es opened.
 
-The `content.js` file is executed in background everytime the page is loaded for the `"https://platzi.com/*"`
+`background.js` file only contains the default storage information about the features of PlatKey. It's the service worker of the extension.
+
+`content.js` file is executed in background everytime the page is loaded for the `"https://platzi.com/*"`
+
+### 🔓 Browser permissions
 
 PlatKey works with these permissions:
 
