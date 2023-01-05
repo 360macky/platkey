@@ -1,8 +1,18 @@
+/**
+ * @name isMac
+ * @description Checks if the user is using Mac OS
+ * @returns {boolean}
+ */
 function isMac() {
   return window.navigator.userAgent.indexOf("Mac") != -1;
 }
 
 chrome.storage.sync.get("spotlight", ({ spotlight }) => {
+  /**
+   * @name loadSpotlightShortcut
+   * @description Loads the spotlight search bar shortcut (cmd+k)
+   * @param {Event} event
+   */
   const loadSpotlightShortcut = (event) => {
     const cmdOrCtrl = isMac() ? event.metaKey : event.ctrlKey;
     const cmdKPressed = event.key === "k" && cmdOrCtrl;
@@ -25,6 +35,10 @@ chrome.storage.sync.get("spotlight", ({ spotlight }) => {
       searchBar.style.display = "none";
     }
   };
+  /**
+   * @name loadSpotlight
+   * @description Loads the spotlight search bar
+   */
   function loadSpotlight() {
     const searchBar = document.getElementsByClassName("NewSearch")[0];
     const searchBox = document.getElementsByClassName("NewSearch-box")[0];
