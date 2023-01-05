@@ -83,6 +83,13 @@ The version 3 of PlatKey will come with new features soon...
 
 PlatKey has a software architecture targeted to be a browser extension for the Chrome Web Store. Since version 3.0 PlatKey adds support for Safari.
 
+```mermaid
+graph TD
+    A[PlatKey is loaded] -->|Load PlatKey Configuration Storage| B(background.js)
+    B --> |Check if web is Platzi| C[\matches: platzi.com/*/]
+    C -->|Load PlatKey default features| D(content_scripts)
+```
+
 PlatKey does not store information of the users. An account is not required to use the extension.
 
 Information related to their extension preferences is stored in the browser's storage.
