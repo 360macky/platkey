@@ -90,6 +90,11 @@ if (window.location.href.startsWith("https://platzi.com/clases/")) {
     });
   }
 
+  /**
+   * @name saveContribution
+   * @description Save or delete a contribution based on the button text.
+   * @param {Event} event
+   */
   function saveContribution(event) {
     const saveContributionButton = event.target;
     const contributionId = getContributionId(
@@ -124,6 +129,10 @@ if (window.location.href.startsWith("https://platzi.com/clases/")) {
     }
   }
 
+  /**
+   * @name loadSaveClassButton
+   * @description Load the "Save class" button.
+   */
   const loadSaveContributionButtons = () => {
     const contributionsQuantity = Array.from(
       document.getElementsByClassName("Content-author")
@@ -189,6 +198,10 @@ if (window.location.href.startsWith("https://platzi.com/clases/")) {
     }
   }
 
+  /**
+   * @name addContributionsButtonListener
+   * @description Add a listener to the contributions section to load the "Save contribution" buttons for each contribution.
+   */
   const addContributionsButtonListener = () => {
     const contributionsTab = document.getElementsByClassName('CommunityTabs-content-tabs')[0].children[0];
     contributionsTab.addEventListener("click", () => {
@@ -223,6 +236,10 @@ if (window.location.href.startsWith("https://platzi.com/clases/")) {
 }
 
 if (window.location.href === "https://platzi.com/home") {
+  /**
+   * @name loadPlatziHighlights
+   * @description Load the Platzi highlights (or saved classes) section.
+   */
   const loadPlatziHighlights = () => {
     const studentHomeWrapper = document.getElementsByClassName(
       "StudentsHome u-wrapper"
@@ -284,6 +301,10 @@ if (window.location.href === "https://platzi.com/home") {
     classItemsContributions.style.rowGap = "1rem";
     classItemsContributions.style.alignItems = "stretch";
 
+    /**
+     * @name deleteContribution
+     * @description Delete a contribution based on its id.
+     */
     function deleteContribution(event) {
       event.preventDefault();
       const contributionId = event.target.getAttribute("data-id");
