@@ -10,6 +10,6 @@ chrome.runtime.onInstalled.addListener(() => {
     theme: "normal",
     spotlight: false,
     classlist: [],
-    savedContributions: []
+    savedContributions: [],
   });
 });
