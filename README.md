@@ -37,6 +37,8 @@
   🤗 Thank you for visiting this browser extension project, help spread it by giving a star! 🌟<br />
   <br />
   <a href="https://github.com/360macky/PlatKey/stargazers"><img src="https://img.shields.io/github/stars/360macky/PlatKey?label=Star%20this%20repository%21&style=social" /></a><br />
+  <br />
+  ✅ This project has diagrams to help you understand how it works! 📌<br />
 </p>
 
 ## 🤖 Concept
