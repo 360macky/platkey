@@ -4,7 +4,6 @@ function isMac() {
 
 chrome.storage.sync.get("spotlight", ({ spotlight }) => {
   const loadSpotlightShortcut = (event) => {
-    console.log('Shortcut loaded!');
     const cmdOrCtrl = isMac() ? event.metaKey : event.ctrlKey;
     const cmdKPressed = event.key === "k" && cmdOrCtrl;
     const escPressed = event.key === "Escape";
