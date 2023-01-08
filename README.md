@@ -96,6 +96,17 @@ PlatKey does not store information of the users. An account is not required to u
 
 Information related to their extension preferences is stored in the browser's storage.
 
+### ✅ Good practices
+
+According to the [Google Chrome Web Store Developer Program Policies](https://developer.chrome.com/docs/webstore/best_practices/), PlatKey as a browser extension follows these good practices:
+
+* **Manifest V3**: The extension uses the new Manifest V3 of Chrome.
+* **Security**: The extension does not store information of the users. An account is not required to use the extension.
+* **User privacy**: Information related to their extension preferences is stored in the browser's storage.
+* **Performance**: The extension is optimized to be lightweight and fast.
+* **User Experence**: The extension is designed to be easy to use and intuitive.
+
+
 ### 🔭 Control Flow
 
 `manifest.json` file is the manifest of the extension. It contains the information of the extension and the permissions it needs.
