@@ -121,7 +121,7 @@ activateShortcutsButton.addEventListener("click", (event) => {
         tabs.forEach((tab) => {
           chrome.scripting.executeScript({
             target: { tabId: tab.id },
-            files: ["deactivateShortcuts.js"],
+            files: ["/src/lib/deactivateShortcuts.js"],
           });
         });
       });
@@ -151,7 +151,7 @@ activateSpotlight.addEventListener("click", (event) => {
         tabs.forEach((tab) => {
           chrome.scripting.executeScript({
             target: { tabId: tab.id },
-            files: ["deactivateSpotlight.js"],
+            files: ["/src/lib/deactivateSpotlight.js"],
           });
         });
       });
@@ -186,12 +186,12 @@ activateGreenboardButton.addEventListener("click", (event) => {
         if (greenboard) {
           chrome.scripting.executeScript({
             target: { tabId: tab.id },
-            files: ["deactivateGreenboard.js"],
+            files: ["/src/lib/deactivateGreenboard.js"],
           });
         } else {
           chrome.scripting.executeScript({
             target: { tabId: tab.id },
-            files: ["greenboard.js"],
+            files: ["/src/lib/greenboard.js"],
           });          
         }
       });
