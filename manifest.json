@@ -10,9 +10,9 @@
     "content_scripts": [
         {
             "js": [
-                "save-items.js",
-                "spotlight.js",
-                "content.js"
+                "/src/scripts/save-items.js",
+                "/src/scripts/spotlight.js",
+                "/src/scripts/content.js"
             ],
             "matches": [
                 "https://platzi.com/*"

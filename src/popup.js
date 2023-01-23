@@ -90,7 +90,7 @@ function changeTheme(theme) {
     tabs.forEach((tab) => {
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
-        files: ["content.js"],
+        files: ["/src/scripts/content.js"],
       });
     });
   });
@@ -135,7 +135,7 @@ activateShortcutsButton.addEventListener("click", (event) => {
     tabs.forEach((tab) => {
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
-        files: ["content.js"],
+        files: ["/src/scripts/content.js"],
       });
     });
   });
@@ -162,7 +162,7 @@ activateSpotlight.addEventListener("click", (event) => {
         tabs.forEach((tab) => {
           chrome.scripting.executeScript({
             target: { tabId: tab.id },
-            files: ["spotlight.js"],
+            files: ["/src/scripts/spotlight.js"],
           });
         });
       });
