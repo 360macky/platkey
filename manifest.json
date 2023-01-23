@@ -3,9 +3,7 @@
     "description": "Atajos de teclado, guarda clases, guarda aportes, buscador aumentado.",
     "version": "3.1",
     "manifest_version": 3,
-    "author": {
-        
-    },
+    "author": "Marcelo Arias",
     "background": {
         "service_worker": "/src/background.js"
     },
@@ -20,7 +18,7 @@
                 "https://platzi.com/*"
             ],
             "css": [
-                "page.css"
+                "/src/styles/page.css"
             ]
         }
     ],
