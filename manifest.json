@@ -3,9 +3,11 @@
     "description": "Atajos de teclado, guarda clases, guarda aportes, buscador aumentado.",
     "version": "3.1",
     "manifest_version": 3,
-    "author": "Marcelo Arias",
+    "author": {
+        
+    },
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "/src/background.js"
     },
     "content_scripts": [
         {
@@ -23,7 +25,7 @@
         }
     ],
     "action": {
-        "default_popup": "popup.html",
+        "default_popup": "/src/popup.html",
         "default_icon": {
             "16": "/images/icon16.png",
             "32": "/images/icon32.png",

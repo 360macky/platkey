@@ -1,4 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap");
+/*
+ * @file CSS file for the extension popup.
+ */
 
 :root {
   --dark-blue: #0a1122;
