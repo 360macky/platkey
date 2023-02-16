@@ -1,0 +1,23 @@
+{
+  "name": "platkey",
+  "version": "1.0.0",
+  "description": "Platzi Multiplatform Browser Extension",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/360macky/platkey.git"
+  },
+  "keywords": ["Chrome", "Extension", "Platzi", "Browser"],
+  "author": {
+    "name": "Marcelo Arias",
+    "email": "hello@marceloarias.com",
+    "url": "https://marceloarias.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/360macky/platkey/issues"
+  },
+  "homepage": "https://platkey.dev"
+}
