@@ -9,7 +9,12 @@
     "type": "git",
     "url": "git+https://github.com/360macky/platkey.git"
   },
-  "keywords": ["Chrome", "Extension", "Platzi", "Browser"],
+  "keywords": [
+    "Chrome",
+    "Extension",
+    "Platzi",
+    "Browser"
+  ],
   "author": {
     "name": "Marcelo Arias",
     "email": "hello@marceloarias.com",
@@ -19,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/360macky/platkey/issues"
   },
-  "homepage": "https://platkey.dev"
+  "homepage": "https://platkey.dev",
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  }
 }
