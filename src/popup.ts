@@ -1,14 +1,14 @@
 /**
  * @file Manages the events for the PlatziKey extension popup.
- * This file wih add event listeners to the buttons and the radio options of popup UI
+ * This file will add event listeners to the buttons and the radio options of popup UI
  */
 
-let activateShortcutsButton = document.getElementById("activateShortcuts");
-let activateGreenboardButton = document.getElementById("activateGreenboard");
-let activateSpotlightButton = document.getElementById("activateSpotlight");
-let shortcutsTitle = document.getElementById("shortcutsTitle");
-let spotlightTitle = document.getElementById("spotlightTitle");
-let themeOptions = document.getElementsByName("pkey__radio");
+let activateShortcutsButton = document.getElementById("activateShortcuts") as HTMLButtonElement;
+let activateGreenboardButton = document.getElementById("activateGreenboard") as HTMLButtonElement;
+let activateSpotlightButton = document.getElementById("activateSpotlight") as HTMLButtonElement;
+let shortcutsTitle = document.getElementById("shortcutsTitle") as HTMLButtonElement;
+let spotlightTitle = document.getElementById("spotlightTitle") as HTMLButtonElement;
+let themeOptions = document.getElementsByName("pkey__radio") as any;
 
 const queryDefaultOptions = { active: true, currentWindow: true };
 
@@ -16,7 +16,7 @@ const queryDefaultOptions = { active: true, currentWindow: true };
  * Update Shortcuts button style.
  * @param {boolean} isActivated - Set the Button mode of Shortcuts button.
  */
-function updateShortcutsButton(isActivated) {
+function updateShortcutsButton(isActivated: boolean) {
   activateShortcutsButton.textContent = isActivated ? "Desactivar" : "Activar";
   activateShortcutsButton.ariaLabel = isActivated
     ? "Desactivar shortcuts"
@@ -38,7 +38,7 @@ function updateShortcutsButton(isActivated) {
  * Update Greenboard button style.
  * @param {boolean} isActivated - Set the Button mode of Greenboard button.
  */
-function updateGreenboardButton(isActivated) {
+function updateGreenboardButton(isActivated: boolean) {
   activateGreenboardButton.textContent = isActivated ? "Desactivar" : "Activar";
   activateGreenboardButton.ariaLabel = isActivated
     ? "Desactivar greenboard"
@@ -49,18 +49,19 @@ function updateGreenboardButton(isActivated) {
   activateGreenboardButton.classList.add(
     isActivated ? "pkey__button-off" : "pkey__button-on"
   );
-  if (isActivated) {
-    greenboardTitle.classList.add("green-text");
-  } else {
-    greenboardTitle.classList.remove("green-text");
-  }
+  // TODO: Check if this is needed
+  // if (isActivated) {
+  //   greenboardTitle.classList.add("green-text");
+  // } else {
+  //   greenboardTitle.classList.remove("green-text");
+  // }
 }
 
 /**
  * Update Spotlight style.
  * @param {boolean} isActivated - Set the Button mode of Spotlight button.
  */
-function updateSpotlightButton(isActivated) {
+function updateSpotlightButton(isActivated: boolean) {
   activateSpotlightButton.textContent = isActivated ? "Desactivar" : "Activar";
   activateSpotlightButton.ariaLabel = isActivated
     ? "Desactivar spotlight"
@@ -82,15 +83,16 @@ function updateSpotlightButton(isActivated) {
  * Change theme onClick event handler.
  * @param {String} theme - Theme name.
  */
-function changeTheme(theme) {
-  let themeOption = document.getElementById(`radio-${theme}`);
+function changeTheme(theme: string) {
+  let themeOption = document.getElementById(`radio-${theme}`) as HTMLInputElement;
   themeOption.checked = true;
   chrome.storage.sync.set({ theme: theme });
   chrome.tabs.query(queryDefaultOptions, (tabs) => {
     tabs.forEach((tab) => {
+      let tabId = tab.id as number;
       chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        files: ["/src/scripts/content.js"],
+        target: { tabId: tabId },
+        files: ["dist/js/content.js"],
       });
     });
   });
@@ -119,9 +121,10 @@ activateShortcutsButton.addEventListener("click", (event) => {
       window.close();
       chrome.tabs.query(queryDefaultOptions, (tabs) => {
         tabs.forEach((tab) => {
+          let tabId = tab.id as number;
           chrome.scripting.executeScript({
-            target: { tabId: tab.id },
-            files: ["/src/lib/deactivateShortcuts.js"],
+            target: { tabId: tabId },
+            files: ["dist/js/deactivateShortcuts.js"],
           });
         });
       });
@@ -133,15 +136,16 @@ activateShortcutsButton.addEventListener("click", (event) => {
 
   chrome.tabs.query(queryDefaultOptions, (tabs) => {
     tabs.forEach((tab) => {
+      let tabId = tab.id as number;
       chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        files: ["/src/scripts/content.js"],
+        target: { tabId: tabId },
+        files: ["dist/js/content.js"],
       });
     });
   });
 });
 
-activateSpotlight.addEventListener("click", (event) => {
+activateSpotlightButton.addEventListener("click", (event) => {
   chrome.storage.sync.get("spotlight", ({ spotlight }) => {
     if (spotlight) {
       window.close();
@@ -149,9 +153,10 @@ activateSpotlight.addEventListener("click", (event) => {
       updateSpotlightButton(!spotlight);
       chrome.tabs.query(queryDefaultOptions, (tabs) => {
         tabs.forEach((tab) => {
+          let tabId = tab.id as number;
           chrome.scripting.executeScript({
-            target: { tabId: tab.id },
-            files: ["/src/lib/deactivateSpotlight.js"],
+            target: { tabId: tabId },
+            files: ["dist/js/deactivateSpotlight.js"],
           });
         });
       });
@@ -160,9 +165,10 @@ activateSpotlight.addEventListener("click", (event) => {
         chrome.storage.sync.set({ spotlight: !spotlight });
         updateSpotlightButton(!spotlight);
         tabs.forEach((tab) => {
+          let tabId = tab.id as number;
           chrome.scripting.executeScript({
-            target: { tabId: tab.id },
-            files: ["/src/scripts/spotlight.js"],
+            target: { tabId: tabId },
+            files: ["dist/js/spotlight.js"],
           });
         });
       });
@@ -174,7 +180,8 @@ activateGreenboardButton.addEventListener("click", (event) => {
   chrome.storage.sync.get("greenboard", ({ greenboard }) => {
     chrome.tabs.query(queryDefaultOptions, (tabs) => {
       tabs.forEach((tab) => {
-        if (!tab.url.includes("/clases/examen")) {
+        let tabUrl = tab.url as string;
+        if (!tabUrl.includes("/clases/examen")) {
           const activateGreenboardWarning = `PlatKey: La herramienta Greenboard está pensado para su uso dentro de exámenes.`;
           window.alert(activateGreenboardWarning);
           return;
@@ -184,14 +191,16 @@ activateGreenboardButton.addEventListener("click", (event) => {
         }
 
         if (greenboard) {
+          let tabId = tab.id as number;
           chrome.scripting.executeScript({
-            target: { tabId: tab.id },
-            files: ["/src/lib/deactivateGreenboard.js"],
+            target: { tabId: tabId },
+            files: ["dist/js/deactivateGreenboard.js"],
           });
         } else {
+          let tabId = tab.id as number;
           chrome.scripting.executeScript({
-            target: { tabId: tab.id },
-            files: ["/src/lib/greenboard.js"],
+            target: { tabId: tabId },
+            files: ["dist/js/greenboard.js"],
           });          
         }
       });
@@ -202,7 +211,7 @@ activateGreenboardButton.addEventListener("click", (event) => {
 for (let index = 0; index < themeOptions.length; index++) {
   let themeOption = themeOptions[index];
   let elementRadio = themeOption.getAttribute("data-radio");
-  themeOption.addEventListener("click", (event) => {
+  themeOption.addEventListener("click", () => {
     changeTheme(elementRadio);
   });
 }

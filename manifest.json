@@ -1,41 +1,41 @@
 {
     "name": "Platkey",
     "description": "Atajos de teclado, guarda clases, guarda aportes, buscador aumentado.",
-    "version": "3.1",
+    "version": "3.2",
     "manifest_version": 3,
     "author": "Marcelo Arias",
     "background": {
-        "service_worker": "/src/background.js"
+        "service_worker": "/dist/js/background.js"
     },
     "content_scripts": [
         {
             "js": [
-                "/src/scripts/save-items.js",
-                "/src/scripts/spotlight.js",
-                "/src/scripts/content.js"
+                "/dist/js/saveItems.js",
+                "/dist/js/spotlight.js",
+                "/dist/js/content.js"
             ],
             "matches": [
                 "https://platzi.com/*"
             ],
             "css": [
-                "/src/styles/page.css"
+                "/dist/styles/page.css"
             ]
         }
     ],
     "action": {
-        "default_popup": "/src/popup.html",
+        "default_popup": "/dist/popup.html",
         "default_icon": {
-            "16": "/images/icon16.png",
-            "32": "/images/icon32.png",
-            "48": "/images/icon48.png",
-            "128": "/images/icon128.png"
+            "16": "/dist/images/icon16.png",
+            "32": "/dist/images/icon32.png",
+            "48": "/dist/images/icon48.png",
+            "128": "/dist/images/icon128.png"
         }
     },
     "icons": {
-        "16": "/images/icon16.png",
-        "32": "/images/icon32.png",
-        "48": "/images/icon48.png",
-        "128": "/images/icon128.png"
+        "16": "/dist/images/icon16.png",
+        "32": "/dist/images/icon32.png",
+        "48": "/dist/images/icon48.png",
+        "128": "/dist/images/icon128.png"
     },
     "permissions": [
         "storage",
