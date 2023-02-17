@@ -10,7 +10,7 @@
     "content_scripts": [
         {
             "js": [
-                "/dist/js/save-items.js",
+                "/dist/js/saveItems.js",
                 "/dist/js/spotlight.js",
                 "/dist/js/content.js"
             ],
