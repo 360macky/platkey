@@ -1,0 +1,63 @@
+/*
+ * @file CSS file for Platzi.com
+ */
+
+.Header-class-report {
+  display: flex;
+}
+
+.learningPathCard:hover .closeNote {
+  opacity: 100 !important;
+}
+
+.save-class-button {
+  transition: all 0.3s ease;
+  margin-right: 1rem;
+}
+
+.save-class-button:active {
+  transform: scale(1.5) rotate(70deg);
+}
+
+.save-contribution-button {
+  background: #24385b;
+  color: #33b1ff;
+  border: 1px solid transparent;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  margin-left: 0.4rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.save-contribution-button:hover {
+  background: #33b1ff;
+  color: #1d315d;
+}
+
+.save-contribution-button:active {
+  transform: scale(1.1);
+}
+
+.ContentClassHighlighted {
+  transition: all 0.3s ease;
+}
+
+.ContentClassHighlighted:hover {
+  background-color: #40587c;
+}
+
+.NewSearch {
+  transition: all 0.3 ease;
+}
+
+/* Hide persistent notification and plan banner issue (TODO: Link #issue) */
+
+.FloatNotification {
+  display: none !important;
+  opacity: 0;
+}
+
+.PlansBanner {
+  display: none !important;
+}
