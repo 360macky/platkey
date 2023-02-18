@@ -4,6 +4,11 @@
  */
 
 /**
+ * @typedef {"normal" | "zen" | "ssh"} PLATZI_THEME
+ */
+type PLATZI_THEME = "normal" | "zen" | "ssh";
+
+/**
  * @interface IExtensionStorage
  * @description Interface for the extension storage object.
  * @property {boolean} shortcuts - Are the shortcuts enabled?
@@ -16,7 +21,7 @@
 interface IExtensionStorage {
   shortcuts: boolean;
   greenboard: boolean;
-  theme: string;
+  theme: PLATZI_THEME;
   spotlight: boolean;
   classlist: any[];
   savedContributions: any[];
