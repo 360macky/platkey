@@ -77,13 +77,31 @@ A new design that reduces the number of buttons and visual elements in the exam.
 
 A terminal-style design to solve exams as if you were installing a package.
 
-### New features 👀
+### 📚 PlatKey Highlight classes
 
-The version 3 of PlatKey will come with new features soon...
+Select classes you want to highlight in your Student Home.
+
+### 💾 PlatKey Save contributions
+
+Save contributions in your Student Home.
 
 ## 💻 Core Development
 
-PlatKey has a software architecture targeted to be a browser extension for the Chrome Web Store. Since version 3.0 PlatKey adds support for Safari.
+This section is for developers who want to know how PlatKey works.
+
+PlatKey has a software architecture targeted to be a browser extension for the Chrome Web Store.
+
+### ⭐️ Version Workflow
+
+The latest version of PlatKey used in production is 3.0.0. The source code you can download is the latest version of **PlatKey for Developers**. Which may contain features that are not yet available in stores, and may contain bugs.
+
+### 📦 Architecture
+
+PlatKey adopts an all-new architecture for browser extensions using TypeScript for the development of the modules. This enables better experience to interact with the Chrome API.
+
+PlatKey uses Webpack for the compilation of the modules written in TypeScript. Webpack is configured into two modes: `development` and `production`.
+
+PlatKey uses JSDocs for the documentation of the code.
 
 ```mermaid
 graph TD
@@ -113,9 +131,9 @@ According to the [Google Chrome Web Store Developer Program Policies](https://de
 
 `popup.html` file is the extension window. The `popup.js` file is the JavaScript code whose scope is in this window. It executed when the popup es opened.
 
-`background.js` file only contains the default storage information about the features of PlatKey. It's the service worker of the extension.
+`background.ts` file only contains the default storage information about the features of PlatKey. It's the service worker of the extension.
 
-`content.js` file is executed in background everytime the page is loaded for the `"https://platzi.com/*"`
+`content.ts` file is executed in background everytime the page is loaded for the `"https://platzi.com/*"`
 
 ### 🔓 Browser permissions
 
