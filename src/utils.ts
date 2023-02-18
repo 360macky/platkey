@@ -31,7 +31,7 @@ export function getScriptOrStylesheet(name: string): string {
 
 /**
  * Convert HTML string to HTML template.
- * @param {String} HTML representing a single element.
+ * @param {String} html Representing a single element.
  * https://stackoverflow.com/questions/494143/creating-a-new-dom-element-from-an-html-string-using-built-in-dom-methods-or-pro/35385518#35385518
  */
 export function htmlToElement(html: string): ChildNode | null {

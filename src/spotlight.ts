@@ -1,11 +1,4 @@
-/**
- * @name isMac
- * @description Checks if the user is using Mac OS
- * @returns {boolean}
- */
-function isMac() {
-  return window.navigator.userAgent.indexOf("Mac") != -1;
-}
+import { isMac } from "./utils";
 
 const TIME_TO_LOAD_SPOTLIGHT = 200;
 
@@ -22,10 +15,13 @@ chrome.storage.sync.get("spotlight", ({ spotlight }) => {
     if (cmdKPressed) {
       let activeElement = document.activeElement as HTMLElement;
       if (activeElement.tagName !== "TEXTAREA") {
-        const searchBar = document.getElementsByClassName("NewSearch")[0] as HTMLDivElement;
+        const searchBar = document.getElementsByClassName(
+          "NewSearch"
+        )[0] as HTMLDivElement;
         if (searchBar.style.display === "none") {
-          const searchInput =
-            document.getElementsByClassName("NewSearch-input")[0] as HTMLInputElement;
+          const searchInput = document.getElementsByClassName(
+            "NewSearch-input"
+          )[0] as HTMLInputElement;
           searchBar.style.display = "block";
           searchInput.focus();
         } else {
@@ -34,7 +30,9 @@ chrome.storage.sync.get("spotlight", ({ spotlight }) => {
       }
     }
     if (escPressed) {
-      const searchBar = document.getElementsByClassName("NewSearch")[0] as HTMLDivElement;
+      const searchBar = document.getElementsByClassName(
+        "NewSearch"
+      )[0] as HTMLDivElement;
       searchBar.style.display = "none";
     }
   };
@@ -43,10 +41,18 @@ chrome.storage.sync.get("spotlight", ({ spotlight }) => {
    * @description Loads the spotlight search bar
    */
   function loadSpotlight() {
-    const searchBar = document.getElementsByClassName("NewSearch")[0] as HTMLDivElement;
-    const searchBox = document.getElementsByClassName("NewSearch-box")[0] as HTMLDivElement;
-    const searchBoxContainer = document.getElementsByClassName("NewSearch-box-container")[0] as HTMLFormElement;
-    const searchNavbarDropDown = document.getElementsByClassName('NewSearch-dropdown')[0] as HTMLUListElement;
+    const searchBar = document.getElementsByClassName(
+      "NewSearch"
+    )[0] as HTMLDivElement;
+    const searchBox = document.getElementsByClassName(
+      "NewSearch-box"
+    )[0] as HTMLDivElement;
+    const searchBoxContainer = document.getElementsByClassName(
+      "NewSearch-box-container"
+    )[0] as HTMLFormElement;
+    const searchNavbarDropDown = document.getElementsByClassName(
+      "NewSearch-dropdown"
+    )[0] as HTMLUListElement;
 
     const spotlightWrapper = document.createElement("div");
     spotlightWrapper.id = "NewSearchSpotlight";
@@ -64,7 +70,6 @@ chrome.storage.sync.get("spotlight", ({ spotlight }) => {
     searchBar.style.display = "none";
     searchBoxContainer.style.width = "480px";
     searchNavbarDropDown.style.width = "480px";
-
   }
   if (spotlight) {
     setTimeout(() => {
