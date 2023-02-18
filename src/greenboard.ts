@@ -38,14 +38,14 @@ export function activateGreenboardOnPlatziTest() {
         "beforeend",
         greenboardHTML as Element
       );
-  
+
       let head = document.getElementsByTagName("head")[0];
       let link = document.createElement("link");
       link.rel = "stylesheet";
       link.type = "text/css";
       link.href = getScriptOrStylesheet("greenboard.css");
       head.appendChild(link);
-  
+
       let canvas = document.getElementById("pkey__canvas") as HTMLCanvasElement;
       let canvasContext = canvas.getContext("2d") as CanvasRenderingContext2D;
       let inputColor = document.getElementById(
@@ -54,16 +54,16 @@ export function activateGreenboardOnPlatziTest() {
       let clearButton = document.getElementById(
         "pkey__clearButton"
       ) as HTMLButtonElement;
-  
+
       canvasContext.lineJoin = "round";
       canvasContext.lineCap = "round";
       canvasContext.lineWidth = 10;
       canvasContext.strokeStyle = inputColor.value;
-  
+
       let isDrawing = false;
       let lastX = 0;
       let lastY = 0;
-  
+
       function draw(e: MouseEvent) {
         if (!isDrawing) return;
         canvasContext.beginPath();
@@ -72,29 +72,28 @@ export function activateGreenboardOnPlatziTest() {
         canvasContext.stroke();
         [lastX, lastY] = [e.offsetX, e.offsetY];
       }
-  
+
       function handleUpdate(this: any) {
         canvasContext.lineWidth = this.value;
         canvasContext.lineCap = this.value;
         canvasContext.strokeStyle = this.value;
       }
-  
+
       function clearCanvas() {
         canvasContext.clearRect(0, 0, canvas.width, canvas.height);
       }
-  
+
       canvas.addEventListener("mousedown", (e) => {
         isDrawing = true;
         [lastX, lastY] = [e.offsetX, e.offsetY];
       });
-  
+
       canvas.addEventListener("mousemove", draw);
       canvas.addEventListener("mouseup", () => (isDrawing = false));
       canvas.addEventListener("mouseout", () => (isDrawing = false));
       inputColor.addEventListener("change", handleUpdate);
       clearButton.addEventListener("click", clearCanvas);
     }
-
   }
 }
 
