@@ -1,47 +1,38 @@
 {
-    "name": "Platkey",
-    "description": "Atajos de teclado, guarda clases, guarda aportes, buscador aumentado.",
-    "version": "3.2",
-    "manifest_version": 3,
-    "author": "Marcelo Arias",
-    "background": {
-        "service_worker": "/dist/js/background.js"
-    },
-    "content_scripts": [
-        {
-            "js": [
-                "/dist/js/saveItems.js",
-                "/dist/js/spotlight.js",
-                "/dist/js/content.js"
-            ],
-            "matches": [
-                "https://platzi.com/*"
-            ],
-            "css": [
-                "/dist/styles/page.css"
-            ]
-        }
-    ],
-    "action": {
-        "default_popup": "/dist/popup.html",
-        "default_icon": {
-            "16": "/dist/images/icon16.png",
-            "32": "/dist/images/icon32.png",
-            "48": "/dist/images/icon48.png",
-            "128": "/dist/images/icon128.png"
-        }
-    },
-    "icons": {
-        "16": "/dist/images/icon16.png",
-        "32": "/dist/images/icon32.png",
-        "48": "/dist/images/icon48.png",
-        "128": "/dist/images/icon128.png"
-    },
-    "permissions": [
-        "storage",
-        "scripting"
-    ],
-    "host_permissions": [
-        "https://platzi.com/*"
-    ]
+  "name": "Platkey",
+  "description": "Atajos de teclado, guarda clases, guarda aportes, buscador aumentado.",
+  "version": "3.2",
+  "manifest_version": 3,
+  "author": "Marcelo Arias",
+  "background": {
+    "service_worker": "/dist/js/background.js"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "/dist/js/saveItems.js",
+        "/dist/js/spotlight.js",
+        "/dist/js/content.js"
+      ],
+      "matches": ["https://platzi.com/*"],
+      "css": ["/dist/styles/page.css"]
+    }
+  ],
+  "action": {
+    "default_popup": "/dist/popup.html",
+    "default_icon": {
+      "16": "/dist/images/icon16.png",
+      "32": "/dist/images/icon32.png",
+      "48": "/dist/images/icon48.png",
+      "128": "/dist/images/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "/dist/images/icon16.png",
+    "32": "/dist/images/icon32.png",
+    "48": "/dist/images/icon48.png",
+    "128": "/dist/images/icon128.png"
+  },
+  "permissions": ["storage", "scripting"],
+  "host_permissions": ["https://platzi.com/*"]
 }

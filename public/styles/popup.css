@@ -103,18 +103,20 @@ body {
   width: 30px;
 }
 
-.pkey__panel-side-component:active
-.pkey__panel-side-image {
+.pkey__panel-side-component:active .pkey__panel-side-image {
   transform: scale(1.2);
 }
 
-.pkey__panel-side-component:active
-.pkey__indicator {
+.pkey__panel-side-component:active .pkey__indicator {
   opacity: 100;
 }
 
 .pkey__panel-component {
-  background: linear-gradient(0deg, var(--clearer-blue), var(--even-clearer-blue));
+  background: linear-gradient(
+    0deg,
+    var(--clearer-blue),
+    var(--even-clearer-blue)
+  );
   border-radius: 20px;
   color: white;
   padding: 1rem;
