@@ -185,8 +185,7 @@ if (window.location.href.startsWith("https://platzi.com/clases/")) {
    * @description Add a listener to the contributions section to load the "Save contribution" buttons for each contribution.
    */
   const addContributionsButtonListener = () => {
-    // TODO: Check if the student is in /classes
-    if (isStudentInClassroom()) {      
+    if (isStudentInClassroom()) {
       const contributionsTab = document.getElementsByClassName(
         "CommunityTabs-content-tabs"
       )[0].children[0];
