@@ -30,6 +30,16 @@ export function getScriptOrStylesheet(name: string): string {
 }
 
 /**
+ * @name compareKey
+ * Check if keyPressed is in values array.
+ * @param {Array} values
+ * @param {Element} keyPressed
+ */
+export function compareKey(values: Array<string>, keyPressed: string) {
+  return values.indexOf(keyPressed) > -1;
+}
+
+/**
  * Convert HTML string to HTML template.
  * @param {String} html Representing a single element.
  * https://stackoverflow.com/questions/494143/creating-a-new-dom-element-from-an-html-string-using-built-in-dom-methods-or-pro/35385518#35385518
