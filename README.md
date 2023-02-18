@@ -9,7 +9,7 @@
   <h1 align="center">PlatKey</h1>
 </p>
 
-<p align="center">🚀 Awesome features to your <a href="https://platzi.com">Platzi Exams</a> with this browser extension 🦉.</p>
+<p align="center">🚀 Awesome features for <a href="https://platzi.com">Platzi</a> with this browser extension 🦉.</p>
 
 <p align="center">💚 Open Source, Free, and available for Chrome, Edge, Brave, Arc and Safari 🦁</p>
 
