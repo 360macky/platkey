@@ -3,17 +3,31 @@
  * This file will add event listeners to the buttons and the radio options of popup UI
  */
 
-let activateShortcutsButton = document.getElementById("activateShortcuts") as HTMLButtonElement;
-let activateGreenboardButton = document.getElementById("activateGreenboard") as HTMLButtonElement;
-let activateSpotlightButton = document.getElementById("activateSpotlight") as HTMLButtonElement;
-let shortcutsTitle = document.getElementById("shortcutsTitle") as HTMLButtonElement;
-let spotlightTitle = document.getElementById("spotlightTitle") as HTMLButtonElement;
-let themeOptions = document.getElementsByName("pkey__radio") as any;
+const activateShortcutsButton = document.getElementById(
+  "activateShortcuts"
+) as HTMLButtonElement;
+const activateGreenboardButton = document.getElementById(
+  "activateGreenboard"
+) as HTMLButtonElement;
+const activateSpotlightButton = document.getElementById(
+  "activateSpotlight"
+) as HTMLButtonElement;
+const shortcutsTitle = document.getElementById(
+  "shortcutsTitle"
+) as HTMLHeadingElement;
+const spotlightTitle = document.getElementById(
+  "spotlightTitle"
+) as HTMLHeadingElement;
+const greenboardTitle = document.getElementById(
+  "greenboardTitle"
+) as HTMLHeadingElement;
+const themeOptions = document.getElementsByName("pkey__radio") as any;
 
-const queryDefaultOptions = { active: true, currentWindow: true };
+type queryInfo = chrome.tabs.QueryInfo;
+const queryDefaultOptions: queryInfo = { active: true, currentWindow: true };
 
 /**
- * Update Shortcuts button style.
+ * Update Shortcuts button UI.
  * @param {boolean} isActivated - Set the Button mode of Shortcuts button.
  */
 function updateShortcutsButton(isActivated: boolean) {
@@ -35,7 +49,7 @@ function updateShortcutsButton(isActivated: boolean) {
 }
 
 /**
- * Update Greenboard button style.
+ * Update Greenboard button UI.
  * @param {boolean} isActivated - Set the Button mode of Greenboard button.
  */
 function updateGreenboardButton(isActivated: boolean) {
@@ -49,16 +63,15 @@ function updateGreenboardButton(isActivated: boolean) {
   activateGreenboardButton.classList.add(
     isActivated ? "pkey__button-off" : "pkey__button-on"
   );
-  // TODO: Check if this is needed
-  // if (isActivated) {
-  //   greenboardTitle.classList.add("green-text");
-  // } else {
-  //   greenboardTitle.classList.remove("green-text");
-  // }
+  if (isActivated) {
+    greenboardTitle.classList.add("green-text");
+  } else {
+    greenboardTitle.classList.remove("green-text");
+  }
 }
 
 /**
- * Update Spotlight style.
+ * Update Spotlight UI.
  * @param {boolean} isActivated - Set the Button mode of Spotlight button.
  */
 function updateSpotlightButton(isActivated: boolean) {
@@ -84,14 +97,16 @@ function updateSpotlightButton(isActivated: boolean) {
  * @param {String} theme - Theme name.
  */
 function changeTheme(theme: string) {
-  let themeOption = document.getElementById(`radio-${theme}`) as HTMLInputElement;
+  let themeOption = document.getElementById(
+    `radio-${theme}`
+  ) as HTMLInputElement;
   themeOption.checked = true;
-  chrome.storage.sync.set({ theme: theme });
+  chrome.storage.sync.set({ theme });
   chrome.tabs.query(queryDefaultOptions, (tabs) => {
     tabs.forEach((tab) => {
       let tabId = tab.id as number;
       chrome.scripting.executeScript({
-        target: { tabId: tabId },
+        target: { tabId },
         files: ["dist/js/content.js"],
       });
     });
@@ -115,7 +130,7 @@ chrome.storage.sync.get("theme", ({ theme }) => {
   }
 });
 
-activateShortcutsButton.addEventListener("click", (event) => {
+activateShortcutsButton.addEventListener("click", () => {
   chrome.storage.sync.get("shortcuts", ({ shortcuts }) => {
     if (shortcuts) {
       window.close();
@@ -123,7 +138,7 @@ activateShortcutsButton.addEventListener("click", (event) => {
         tabs.forEach((tab) => {
           let tabId = tab.id as number;
           chrome.scripting.executeScript({
-            target: { tabId: tabId },
+            target: { tabId },
             files: ["dist/js/deactivateShortcuts.js"],
           });
         });
@@ -145,7 +160,7 @@ activateShortcutsButton.addEventListener("click", (event) => {
   });
 });
 
-activateSpotlightButton.addEventListener("click", (event) => {
+activateSpotlightButton.addEventListener("click", () => {
   chrome.storage.sync.get("spotlight", ({ spotlight }) => {
     if (spotlight) {
       window.close();
@@ -176,13 +191,13 @@ activateSpotlightButton.addEventListener("click", (event) => {
   });
 });
 
-activateGreenboardButton.addEventListener("click", (event) => {  
+activateGreenboardButton.addEventListener("click", () => {
   chrome.storage.sync.get("greenboard", ({ greenboard }) => {
     chrome.tabs.query(queryDefaultOptions, (tabs) => {
       tabs.forEach((tab) => {
         let tabUrl = tab.url as string;
         if (!tabUrl.includes("/clases/examen")) {
-          const activateGreenboardWarning = `PlatKey: La herramienta Greenboard está pensado para su uso dentro de exámenes.`;
+          const activateGreenboardWarning = `PlatKey: La herramienta Greenboard está pensada para su uso dentro de exámenes.`;
           window.alert(activateGreenboardWarning);
           return;
         } else {
@@ -201,7 +216,7 @@ activateGreenboardButton.addEventListener("click", (event) => {
           chrome.scripting.executeScript({
             target: { tabId: tabId },
             files: ["dist/js/greenboard.js"],
-          });          
+          });
         }
       });
     });
