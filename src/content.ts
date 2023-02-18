@@ -1,21 +1,13 @@
 /**
  * @file Manages the features from popup.js.
  */
-import { isMac, getScriptOrStylesheet, htmlToElement } from "./utils";
+import { isMac, compareKey } from "./utils";
 import { activateGreenboardOnPlatziTest } from "./greenboard";
+import { isStudentInExam } from "./studentLocalization";
 
 /**
- * @name compareKey
- * Check if keyPressed is in values array.
- * @param {Array} values
- * @param {Element} keyPressed
- */
-function compareKey(values: Array<string>, keyPressed: string) {
-  return values.indexOf(keyPressed) > -1;
-}
-
-/**
- * Click in Platzi Test "Next" Button.
+ * @name nextQuestion
+ * @description Clicks in Platzi Test "Next" Button.
  */
 function nextQuestion() {
   const nextStep = document.getElementsByClassName(
@@ -30,7 +22,8 @@ function nextQuestion() {
 }
 
 /**
- * Click in Platzi Test "Skip" Button.
+ * @name skipQuestion
+ * @description Clicks in Platzi Test "Skip" Button.
  */
 function skipQuestion() {
   const skipQuestion = document.getElementsByClassName(
@@ -48,8 +41,8 @@ function skipQuestion() {
  * @name shortcutsOnPlatzi
  * @description Manages keyboard touches by firing a click() method and calling skipQuestion() and nextQuestion().
  */
-function shortcutsOnPlatzi(event: KeyboardEvent) {
-  if (window.location.pathname.startsWith("/clases/examen")) {
+function handleShortcutsOnPlatzi(event: KeyboardEvent) {
+  if (isStudentInExam()) {
     const isOnlyKeyPressed =
       !event.ctrlKey && !event.metaKey && !event.shiftKey;
     const cmdOrCtrl = isMac() ? event.metaKey : event.ctrlKey;
@@ -215,22 +208,30 @@ function shortcutsOnPlatzi(event: KeyboardEvent) {
 }
 
 /**
+ * @name addPlatKeyMessageToPlatziExam
+ * @description Add a message to the Platzi exam page to inform the user that
+ * they can use the Platkey extension with powerful shortcuts.
+ */
+function addPlatKeyMessageToPlatziExam() {
+  const overviewList = document.getElementsByClassName(
+    "StartExamOverview-list"
+  )[0];
+  const shortcutsInfo = document.createElement("li") as HTMLLIElement;
+  shortcutsInfo.textContent = "Puedes usar shortcuts de tu extensión Platkey.";
+  overviewList.append(shortcutsInfo);
+}
+
+/**
  * @name activateShortcutsOnPlatzi
  * @keyboard Enable keyboard shortcuts on window load.
  */
 function activateShortcutsOnPlatzi() {
-  if (window.location.pathname.startsWith("/clases/examen")) {
+  if (isStudentInExam()) {
     if (document.getElementsByClassName("StartExamOverview-list").length > 0) {
-      const overviewList = document.getElementsByClassName(
-        "StartExamOverview-list"
-      )[0];
-      const shortcutsInfo = document.createElement("li");
-      shortcutsInfo.textContent =
-        "Puedes usar shortcuts de tu extensión Platkey.";
-      overviewList.append(shortcutsInfo);
+      addPlatKeyMessageToPlatziExam();
     }
   }
-  window.addEventListener("keydown", shortcutsOnPlatzi);
+  window.addEventListener("keydown", handleShortcutsOnPlatzi);
 }
 
 /**
@@ -254,8 +255,8 @@ function deactivateGreenboardOnPlatziTest() {
  * @param {String} theme Theme name.
  */
 function appendStylesheet(theme: string) {
-  let head = document.getElementsByTagName("head")[0];
-  let link = document.createElement("link");
+  const head = document.getElementsByTagName("head")[0] as HTMLHeadElement;
+  let link = document.createElement("link") as HTMLLinkElement;
   link.rel = "stylesheet";
   link.type = "text/css";
   link.id = theme;
@@ -279,27 +280,23 @@ function removeElementsIfExists(ids: string[]) {
 }
 
 /**
- * Switch Platzi Test theme to default normal.
+ * @name updatePlatziTheme
+ * @param {String} theme Theme code.
  */
-function changeThemeNormal() {
-  removeElementsIfExists(["zen", "ssh"]);
-}
-
-/**
- * Switch Platzi Test theme to Zen Mode.
- */
-function changeThemeZen() {
-  appendStylesheet("zen");
-  removeElementsIfExists(["ssh"]);
-}
-
-/**
- * Switch Platzi Test theme to SSH Mode.
- */
-function changeThemeSSH() {
-  appendStylesheet("ssh");
-  removeElementsIfExists(["zen"]);
-}
+const updatePlatziTheme = (theme: string) => {
+  appendStylesheet(theme);
+  switch (theme) {
+    case "zen":
+      removeElementsIfExists(["ssh"]);
+      break;
+    case "ssh":
+      removeElementsIfExists(["zen"]);
+      break;
+    default:
+      removeElementsIfExists(["zen", "ssh"]);
+      break;
+  }
+};
 
 /**
  * @description Load shortcuts.
@@ -325,17 +322,5 @@ chrome.storage.sync.get("greenboard", ({ greenboard }) => {
  * @description Load theme.
  */
 chrome.storage.sync.get("theme", ({ theme }) => {
-  switch (theme) {
-    case "normal":
-      changeThemeNormal();
-      break;
-    case "zen":
-      changeThemeZen();
-      break;
-    case "ssh":
-      changeThemeSSH();
-      break;
-    default:
-      break;
-  }
+  updatePlatziTheme(theme);
 });
