@@ -1,0 +1,14 @@
+{
+  "activate": {
+    "message": "Activar"
+  },
+  "deactivate": {
+    "message": "Desactivar"
+  },
+  "theme": {
+    "message": "Tema"
+  },
+  "mode-zen": {
+    "message": "Modo Zen"
+  }
+}
