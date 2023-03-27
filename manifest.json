@@ -34,5 +34,6 @@
     "128": "/dist/images/icon128.png"
   },
   "permissions": ["storage", "scripting"],
-  "host_permissions": ["https://platzi.com/*"]
+  "host_permissions": ["https://platzi.com/*"],
+  "default_locale": "es"
 }
