@@ -1,15 +1,24 @@
+import esMessages from "./locales/es.json";
+import enMessages from "./locales/en.json";
+
+type IMessages = {
+  [key: string]: string;
+};
+
+let messages: IMessages = {};
+
 /**
  * @file Manages the events for the PlatziKey extension popup.
  * This file will add event listeners to the buttons and the radio options of popup UI
  */
 
-const activateShortcutsButton = document.getElementById(
+const shortcutsButton = document.getElementById(
   "activateShortcuts"
 ) as HTMLButtonElement;
-const activateGreenboardButton = document.getElementById(
+const greenboardButton = document.getElementById(
   "activateGreenboard"
 ) as HTMLButtonElement;
-const activateSpotlightButton = document.getElementById(
+const spotlightButton = document.getElementById(
   "activateSpotlight"
 ) as HTMLButtonElement;
 const shortcutsTitle = document.getElementById(
@@ -31,14 +40,16 @@ const queryDefaultOptions: queryInfo = { active: true, currentWindow: true };
  * @param {boolean} isActivated - Set the Button mode of Shortcuts button.
  */
 function updateShortcutsButton(isActivated: boolean) {
-  activateShortcutsButton.textContent = isActivated ? "Desactivar" : "Activar";
-  activateShortcutsButton.ariaLabel = isActivated
-    ? "Desactivar shortcuts"
-    : "Activar shortcuts";
-  activateShortcutsButton.classList.remove(
+  shortcutsButton.textContent = isActivated
+    ? messages["deactivate"]
+    : messages["activate"];
+  shortcutsButton.ariaLabel = isActivated
+    ? messages["deactivate"]
+    : messages["activate"];
+  shortcutsButton.classList.remove(
     isActivated ? "pkey__button-on" : "pkey__button-off"
   );
-  activateShortcutsButton.classList.add(
+  shortcutsButton.classList.add(
     isActivated ? "pkey__button-off" : "pkey__button-on"
   );
   if (isActivated) {
@@ -53,14 +64,16 @@ function updateShortcutsButton(isActivated: boolean) {
  * @param {boolean} isActivated - Set the Button mode of Greenboard button.
  */
 function updateGreenboardButton(isActivated: boolean) {
-  activateGreenboardButton.textContent = isActivated ? "Desactivar" : "Activar";
-  activateGreenboardButton.ariaLabel = isActivated
-    ? "Desactivar greenboard"
-    : "Activar greenboard";
-  activateGreenboardButton.classList.remove(
+  greenboardButton.textContent = isActivated
+    ? messages["deactivate"]
+    : messages["activate"];
+  greenboardButton.ariaLabel = isActivated
+    ? messages["deactivate"]
+    : messages["activate"];
+  greenboardButton.classList.remove(
     isActivated ? "pkey__button-on" : "pkey__button-off"
   );
-  activateGreenboardButton.classList.add(
+  greenboardButton.classList.add(
     isActivated ? "pkey__button-off" : "pkey__button-on"
   );
   if (isActivated) {
@@ -75,14 +88,16 @@ function updateGreenboardButton(isActivated: boolean) {
  * @param {boolean} isActivated - Set the Button mode of Spotlight button.
  */
 function updateSpotlightButton(isActivated: boolean) {
-  activateSpotlightButton.textContent = isActivated ? "Desactivar" : "Activar";
-  activateSpotlightButton.ariaLabel = isActivated
-    ? "Desactivar spotlight"
-    : "Activar spotlight";
-  activateSpotlightButton.classList.remove(
+  spotlightButton.textContent = isActivated
+    ? messages["deactivate"]
+    : messages["activate"];
+  spotlightButton.ariaLabel = isActivated
+    ? messages["deactivate"]
+    : messages["activate"];
+  spotlightButton.classList.remove(
     isActivated ? "pkey__button-on" : "pkey__button-off"
   );
-  activateSpotlightButton.classList.add(
+  spotlightButton.classList.add(
     isActivated ? "pkey__button-off" : "pkey__button-on"
   );
   if (isActivated) {
@@ -130,7 +145,7 @@ chrome.storage.sync.get("theme", ({ theme }) => {
   }
 });
 
-activateShortcutsButton.addEventListener("click", () => {
+shortcutsButton.addEventListener("click", () => {
   chrome.storage.sync.get("shortcuts", ({ shortcuts }) => {
     if (shortcuts) {
       window.close();
@@ -160,7 +175,7 @@ activateShortcutsButton.addEventListener("click", () => {
   });
 });
 
-activateSpotlightButton.addEventListener("click", () => {
+spotlightButton.addEventListener("click", () => {
   chrome.storage.sync.get("spotlight", ({ spotlight }) => {
     if (spotlight) {
       window.close();
@@ -191,7 +206,7 @@ activateSpotlightButton.addEventListener("click", () => {
   });
 });
 
-activateGreenboardButton.addEventListener("click", () => {
+greenboardButton.addEventListener("click", () => {
   chrome.storage.sync.get("greenboard", ({ greenboard }) => {
     chrome.tabs.query(queryDefaultOptions, (tabs) => {
       tabs.forEach((tab) => {
@@ -230,3 +245,19 @@ for (let index = 0; index < themeOptions.length; index++) {
     changeTheme(elementRadio);
   });
 }
+
+function translateContent() {
+  const language = window.navigator.language.slice(0, 2);
+  const elements = document.querySelectorAll("[data-i18n]");
+  messages = language === "es" ? esMessages : enMessages;
+
+  elements.forEach((element) => {
+    const key = element.getAttribute("data-i18n") as string;
+    const message = messages[key] as string;
+    if (message) {
+      element.textContent = message;
+    }
+  });
+}
+
+window.addEventListener("load", translateContent);
