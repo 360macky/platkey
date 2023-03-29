@@ -15,7 +15,9 @@ export function getLanguage(): SupportedLanguages {
   return "en";
 }
 
-type TranslationKeys = keyof (typeof enMessages & typeof esMessages & typeof ptMessages);
+type TranslationKeys = keyof (typeof enMessages &
+  typeof esMessages &
+  typeof ptMessages);
 
 /**
  * Based on the language, get the messages.
