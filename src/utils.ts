@@ -50,3 +50,16 @@ export function htmlToElement(html: string): ChildNode | null {
   template.innerHTML = html;
   return template.content.firstChild;
 }
+
+type SupportedLanguages = "en" | "es" | "pt";
+
+/**
+ * Get the language based on the browser.
+ */
+export function getLanguage(): SupportedLanguages {
+  let rawLanguage = window.navigator.language.slice(0, 2);
+  if (["en", "es", "pt"].includes(rawLanguage)) {
+    return rawLanguage as SupportedLanguages;
+  }
+  return "en";
+}
