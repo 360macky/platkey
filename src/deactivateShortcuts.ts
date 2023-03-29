@@ -1,4 +1,4 @@
-let deactivateShortcutsMessage = `PlatziKey: Para desactivar los shortcuts se recargará esta página. ${
+let deactivateShortcutsMessage = `PlatKey: Para desactivar los shortcuts se recargará esta página. ${
   window.location.pathname.startsWith("/clases/examen")
     ? "No te preocupes, no perderás el progreso del examen."
     : ""
