@@ -2,5 +2,6 @@
   "activate":  "Activate",
   "deactivate": "Deactivate",
   "theme": "Theme",
-  "zenmode": "Zen Mode"
+  "zenmode": "Zen Mode",
+  "sshmode": "SSH Mode"
 }
