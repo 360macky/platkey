@@ -1,0 +1,7 @@
+{
+  "activate":  "Ativar",
+  "deactivate": "Desativar",
+  "theme": "Tema",
+  "zenmode": "Modo Zen",
+  "sshmode": "Modo SSH"
+}
