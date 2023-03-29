@@ -1,5 +1,6 @@
-let deactivateSpotlightMessage =
-  "PlatKey: Para desactivar spotlight se recargará la página.";
+import { t } from "./language";
+
+let deactivateSpotlightMessage = t("spotlightAlert");
 
 let deactivateConfirmSpotlight = window.confirm(
   deactivateSpotlightMessage
