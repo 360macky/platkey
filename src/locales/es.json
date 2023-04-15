@@ -1,7 +1,8 @@
 {
-  "activate":  "Activar",
+  "activate": "Activar",
   "deactivate": "Desactivar",
   "theme": "Tema",
   "zenmode": "Modo Zen",
-  "sshmode": "Modo SSH"
+  "sshmode": "Modo SSH",
+  "spotlightAlert": "PlatKey: To deactivate Spotlight, the page will reload."
 }
