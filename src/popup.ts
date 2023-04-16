@@ -261,3 +261,16 @@ function translateContent() {
 }
 
 window.addEventListener("load", translateContent);
+
+// Safari patch for window.alert bug
+chrome.storage.sync.get("greenboard", ({ greenboard }) => {
+  chrome.tabs.query(queryDefaultOptions, (tabs) => {
+    tabs.forEach((tab) => {
+      let tabUrl = tab.url as string;
+      const safariPatchComponent = document.getElementById("safari-patch-greenboard") as HTMLDivElement;
+      if (!tabUrl.includes("/clases/examen")) {
+        safariPatchComponent.style.display = "none";
+      }
+    });
+  });
+});
